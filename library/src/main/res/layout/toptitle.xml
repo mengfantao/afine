@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+ >
+    <View
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:background="#fff"
+        />
+    <LinearLayout
+        android:id="@+id/toptitle_left"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:gravity="left|center_vertical"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toptitle_right"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentRight="true"
+        android:gravity="right|center_vertical"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toptitle_center"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/toptitle_left"
+        android:layout_toLeftOf="@+id/toptitle_right"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"></LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:visibility="gone"
+        android:id="@+id/line"
+        android:background="#f5f5f5"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+
+</merge>

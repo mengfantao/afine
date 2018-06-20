@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/ll1"
+        android:background="@drawable/shape_bg_ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_bg_f0f0f0_top"
+
+            android:gravity="center_horizontal|center_vertical"
+            android:text="支付"
+            android:textColor="@color/color_333333"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="充值:1000"
+                android:id="@+id/tv_message"
+                android:textColor="@color/color_666666"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="¥1000"
+                android:id="@+id/tv_money"
+                android:textColor="@color/color_333333"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_E5E5E5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rl_zfb"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/iv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+
+                android:src="@drawable/gamecatpay_alipay" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_2"
+                android:text="支付宝支付"
+                android:textColor="@color/color_666666"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/gamecatpay_checkbox"
+                android:checked="true"
+                android:id="@+id/cb_zfb"
+                android:enabled="false"
+                android:paddingRight="12dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/color_E5E5E5" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rl_weixin"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/iv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/gamecatpay_wenxin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_1"
+                android:text="微信支付"
+                android:textColor="@color/color_666666"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:enabled="false"
+                android:id="@+id/cb_weixin"
+                android:button="@drawable/gamecatpay_checkbox"
+                android:paddingRight="12dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/color_E5E5E5" />
+        <Button
+            android:id="@+id/btn_pay"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_selector"
+            android:text="确认支付" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/icon_update_close"
+        android:layout_above="@+id/ll1"
+        android:id="@+id/iv_close"
+        android:layout_alignRight="@+id/ll1"
+        android:layout_marginRight="12dp"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

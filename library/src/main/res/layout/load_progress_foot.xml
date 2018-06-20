@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:orientation="horizontal">
+
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/indicatorview"
+        android:layout_centerHorizontal="true"
+        style="@style/AVLoadingIndicatorView.Large"
+        app:indicatorColor="@color/color_E5E5E5"
+        />
+    <TextView
+        android:id="@+id/text_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正在加载.."
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/indicatorview"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/color_un_enable"
+        android:textSize="14sp" />
+</RelativeLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NineGridView">
+        <attr name="ngv_singleImageSize" format="dimension"/>
+        <attr name="ngv_singleImageRatio" format="float"/>
+        <attr name="ngv_gridSpacing" format="dimension"/>
+        <attr name="ngv_maxSize" format="integer"/>
+        <attr name="ngv_mode" format="enum">
+            <enum name="fill" value="0"/>
+            <enum name="grid" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="StateLayout">
+        <!-- 声明格式是引用，可以通过@layout/xxlayout指定-->
+        <attr name="loading_layout" format="reference"></attr>
+        <attr name="success_layout" format="reference"></attr>
+        <attr name="error_layout" format="reference"></attr>
+        <attr name="empty_layout" format="reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="CountDownProgress">
+
+        <!-- 圆实心的颜色 -->
+        <attr name="circSolidColor" format="color"></attr>
+
+        <!-- 圆边框的颜色 -->
+        <attr name="circFrameColor" format="color"></attr>
+
+        <!-- 进度条的颜色 -->
+        <attr name="progressColor" format="color"></attr>
+
+        <!-- 文字的颜色 -->
+        <attr name="textColor" format="color"></attr>
+
+    </declare-styleable>
+</resources>
