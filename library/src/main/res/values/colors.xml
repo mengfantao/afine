@@ -17,4 +17,8 @@
     <!--统一颜色变化-->
     <color name="colorMainBackground">#eef1f4</color>
     <color name="color_window_background">#fff2f4f7</color>
+
+    <color name="tv_gray">#666666</color>
+    <color name="tv_blue">#308BE9</color>     //蓝色
+    <color name="divider_gray">#d9d9d9</color>//细分割线颜色
 </resources>

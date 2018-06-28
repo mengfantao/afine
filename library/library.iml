@@ -85,31 +85,24 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/attr" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/bundles" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/typedefs.txt" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.android.support:multidex-1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:exposed-instrumentation-api-publish-0.5" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-27.1.0" level="project" />
-    <orderEntry type="library" name="com.amap.api:location:4.0.1@jar" level="project" />
     <orderEntry type="library" name="com.android.support:design-27.1.0" level="project" />
     <orderEntry type="library" name="com.squareup.okio:okio:1.8.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:transition-27.1.0" level="project" />
@@ -122,6 +115,8 @@
     <orderEntry type="library" name="com.parse.bolts:bolts-tasks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="com.nineoldandroids:library:2.4.0@jar" level="project" />
     <orderEntry type="library" name="com.facebook.fresco:imagepipeline-0.12.0" level="project" />
+    <orderEntry type="library" name="com.afollestad.material-dialogs:core-0.9.6.0" level="project" />
+    <orderEntry type="library" name="me.zhanghai.android.materialprogressbar:library-1.4.2" level="project" />
     <orderEntry type="library" name="jp.wasabeef:glide-transformations-2.0.1" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/alipaySingle-20160825.jar:unspecified@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
@@ -140,7 +135,9 @@
     <orderEntry type="library" scope="TEST" name="javax.annotation:javax.annotation-api:1.2@jar" level="project" />
     <orderEntry type="library" name="com.zhihu.android:matisse-0.4.3" level="project" />
     <orderEntry type="library" name="org.greenrobot:eventbus:3.0.0@jar" level="project" />
+    <orderEntry type="library" name="com.hedgehog.ratingbar:app-1.1.2" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/libammsdk.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="com.android.support:support-annotations:27.1.1@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/fastjson-1.1.52.android.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="pub.devrel:easypermissions-1.2.0" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/photoview1.2.4.jar:unspecified@jar" level="project" />
@@ -152,7 +149,6 @@
     <orderEntry type="library" name="com.android.support:support-core-utils-27.1.0" level="project" />
     <orderEntry type="library" name="android.arch.core:common:1.1.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.inject:javax.inject:1@jar" level="project" />
-    <orderEntry type="library" name="com.android.support:support-annotations:27.1.0@jar" level="project" />
     <orderEntry type="library" name="io.reactivex:rxandroid-1.1.0" level="project" />
     <orderEntry type="library" name="com.qiniu:happy-dns:0.2.7@jar" level="project" />
     <orderEntry type="library" name="com.contrarywind:wheelview-4.0.4" level="project" />
@@ -166,18 +162,22 @@
     <orderEntry type="library" name="com.android.support:support-vector-drawable-27.1.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:common:1.1.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:cardview-v7-27.1.0" level="project" />
+    <orderEntry type="library" name="com.airbnb.android:lottie-2.5.4" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-27.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="org.hamcrest:hamcrest-library:1.3@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-27.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:runner-0.5" level="project" />
     <orderEntry type="library" name="it.sephiroth.android.library.easing:library-1.0.2" level="project" />
+    <orderEntry type="library" name="com.afollestad.material-dialogs:commons-0.9.6.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:livedata-core-1.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-27.1.0" level="project" />
+    <orderEntry type="library" name="com.android.support:exifinterface-27.1.1" level="project" />
     <orderEntry type="library" name="it.sephiroth.android.library.imagezoom:library-1.0.4" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-27.1.0" level="project" />
     <orderEntry type="library" name="com.contrarywind:Android-PickerView-4.1.2" level="project" />
     <orderEntry type="library" name="com.facebook.fresco:imagepipeline-base-0.12.0" level="project" />
     <orderEntry type="library" name="com.wang.avi:library-2.1.3" level="project" />
+    <orderEntry type="library" name="com.amap.api:location:4.1.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-27.1.0" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:glide:3.7.0@jar" level="project" />
     <orderEntry type="library" name="android.arch.core:runtime-1.1.0" level="project" />

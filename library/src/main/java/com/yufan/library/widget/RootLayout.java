@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yufan.library.R;
-import com.yufan.library.util.PxUtil;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -31,17 +30,12 @@ import java.lang.annotation.RetentionPolicy;
  * 用数组代替判断逻辑！
  */
 public class RootLayout extends RelativeLayout {
-    public static final int STATE_NONE = -1;
     public static final int STATE_LOADING = 0;
-    public static final int STATE_SUCCESS = 1;
     public static final int STATE_ERROR = 2;
     public static final int STATE_EMPTY = 3;
-    private int currentState = STATE_NONE;
-    private final RelativeLayout mContent;
-    private View[] views = new View[4];
-    private OnStateLayoutClickListener onStateLayoutClickListener;
-
-    @IntDef({STATE_NONE,STATE_LOADING, STATE_SUCCESS, STATE_ERROR,STATE_EMPTY})
+    private int currentState = STATE_EMPTY;
+    private View[] views = new View[2];
+    @IntDef({STATE_LOADING,STATE_ERROR,STATE_EMPTY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface State{}
     public RootLayout(Context context) {
@@ -50,38 +44,19 @@ public class RootLayout extends RelativeLayout {
     public RootLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
-    int[] layouts = new int[]{R.layout.layout_loading, R.layout.layout_loading, R.layout.layout_error, R.layout.layout_empty};
+    int[] layouts = new int[]{R.layout.layout_loading, R.layout.layout_error, R.layout.layout_empty};
 
     public RootLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContent=    new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        addView(mContent,layoutParams);
+
+        LayoutParams layoutParams=new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(this,layoutParams);
         for (int i = 0;  i < layouts.length; i++) {
             setStateLayout( i, layouts[i]);
         }
         setBackgroundColor(getResources().getColor(R.color.white));
     }
-    public void addTitle(AppToolbar appToolbar,boolean isShowTitle){
-        if(isShowTitle){
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, PxUtil.convertDIP2PX(getContext(), 56));
-            addView(appToolbar, lp);
-            if(appToolbar.isVertical()){
-                appToolbar.getBackgroundView().setBackgroundResource(R.drawable.shape_title_backgound);
-                LayoutParams rlp = (LayoutParams) mContent.getLayoutParams();
-                rlp.addRule(RelativeLayout.BELOW, R.id.title_id);
-                mContent.setLayoutParams(rlp);
-            }else {
-                appToolbar.getBackgroundView().setBackgroundResource(R.drawable.shape_title_backgound);
-                appToolbar.getBackgroundView().setAlpha(0);
-                LayoutParams rlp = (LayoutParams) mContent.getLayoutParams();
-                rlp.removeRule(RelativeLayout.BELOW);
-            }
 
-
-        }
-
-    }
 
     public void setStateLayout(@State int state,@LayoutRes int layout) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -92,26 +67,25 @@ public class RootLayout extends RelativeLayout {
     private void setStateView(@State int state,@NonNull View view) {
         // 如果之前调过此方法，设置过某状态对应的View，应该先移除再添加
         if(views[state] !=null){
-            mContent.removeView(views[state]);
+           removeView(views[state]);
         }
         views[state] = view;
-        mContent.addView(view);
+        addView(view);
         // 如果和当前状态不相符则隐藏
         view.setVisibility(state == currentState ? View.VISIBLE : View.GONE);
         if (state == STATE_EMPTY || state == STATE_ERROR) {
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (onStateLayoutClickListener != null) {
-                        onStateLayoutClickListener.onClick();
-                    }
+
                 }
             });
         }
     }
 
 
-    public @NonNull View getStateView(@State  int state) {
+    public @NonNull
+    View getStateView(@State  int state) {
         return views[state];
     }
 
@@ -126,13 +100,5 @@ public class RootLayout extends RelativeLayout {
         return currentState;
     }
 
-    public void setOnStateLayoutClickListener(OnStateLayoutClickListener onStateLayoutClickListener) {
-
-        this.onStateLayoutClickListener = onStateLayoutClickListener;
-    }
-
-    public interface OnStateLayoutClickListener {
-        void onClick();
-    }
 
 }

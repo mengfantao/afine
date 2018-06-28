@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.yufan.library.R;
 import com.yufan.library.dialog.ProgressDialog;
 import com.yufan.library.util.ToastUtil;
@@ -15,15 +17,20 @@ import com.yufan.library.util.ToastUtil;
 
 public class DialogManager {
     private static DialogManager instance=new DialogManager();
-    private ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;//loading dialog
     private Activity mActivity;
+    private MaterialDialog mDialog;//对话框loading dialog
 
     private DialogManager() {
     }
     public void init(Activity activity){
         mActivity=activity;
     }
-    
+
+    private boolean isAttach() {
+        return mActivity != null && !mActivity.isDestroyed();
+    }
+
     public static DialogManager getInstance(){
         return instance;
     }
@@ -33,6 +40,10 @@ public class DialogManager {
             return ;
         }
         ToastUtil.showToast(mActivity, hint, Toast.LENGTH_SHORT);
+    }
+    public final void toast(int strId){
+        String text = mActivity.getResources().getString(strId);
+        toast(text);
     }
 
     /**
@@ -65,23 +76,13 @@ public class DialogManager {
         toastPostSuccess(text, success);
     }
 
-
-    public final void toast(int strId){
-        String text = mActivity.getResources().getString(strId);
-        toast(text);
-    }
-
-
-    public final void showDialog() {
+    ////dialog
+    public final void showLoadingDialog() {
         String hint = "加载中...";
-        showProgressDialog(hint);
+        showLoadingDialog(hint);
     }
 
-    public final void dismissDialog() {
-        dismissProgressDialog();
-    }
-
-    public final void showProgressDialog(String hint) {
+    public final void showLoadingDialog(String hint) {
         if (isAttach()) {
             if (mProgressDialog != null && mProgressDialog.isShowing()) {
                 return;
@@ -89,20 +90,34 @@ public class DialogManager {
             mProgressDialog = new ProgressDialog(mActivity, hint);
             mProgressDialog.show();
         }
-
-
     }
-
-    private boolean isAttach() {
-        return mActivity != null && !mActivity.isDestroyed();
-    }
-
-    public void dismissProgressDialog() {
+    public final void dismiss() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
+        }
+        if (mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
         }
     }
 
 
+    public final void showDialog() {
+        String hint = "加载中...";
+        showDialog(hint);
+    }
+
+    public final void showDialog(String hint) {
+        if (isAttach()) {
+            if (mDialog != null && mDialog.isShowing()) {
+                return;
+            }
+            mDialog = new MaterialDialog.Builder(mActivity)
+//                    .title(R.string.progress_dialog)
+                    .content(hint)
+                    .progress(true, 0)
+                    .progressIndeterminateStyle(false)
+                    .show();
+        }
+    }
 
 }
