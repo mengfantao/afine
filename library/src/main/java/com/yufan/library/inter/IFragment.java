@@ -10,10 +10,6 @@ import com.yufan.library.widget.AppToolbar;
  */
 
 public interface IFragment {
-    @LayoutRes
-    int getLayoutId();
-
-    boolean initTitle(AppToolbar appToolbar);
 
     void initData();
 

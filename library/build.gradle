@@ -77,6 +77,6 @@ dependencies {
     compile 'com.hedgehog.ratingbar:app:1.1.2'
     compile 'com.amap.api:location:latest.integration'
     compile 'com.afollestad.material-dialogs:core:0.9.6.0'
-    compile 'com.afollestad.material-dialogs:commons:0.9.6.0'
 //    compile 'com.github.linger1216:labelview:v1.1.2'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
