@@ -10,11 +10,6 @@ import com.yufan.library.widget.AppToolbar;
  */
 
 public interface IFragment {
-
-    void initData();
-
-    void initView(View view);
-
     void onRefresh();
 
 

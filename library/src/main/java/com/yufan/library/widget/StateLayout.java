@@ -3,6 +3,7 @@ package com.yufan.library.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yufan.library.R;
@@ -20,19 +21,9 @@ public class StateLayout extends RelativeLayout {
     Class vuClass;
     public StateLayout(final BaseVu vu) {
         this(vu.getContext(), null);
-       vuClass=vu.getClass();
-       setBackgroundColor(getResources().getColor(R.color.white));
-        errorView=View.inflate(vu.getContext(), R.layout.layout_error,this);
-        emptyView=View.inflate(vu.getContext(),R.layout.layout_empty,this);
-        errorView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             IVu iVu= vu.getiVu();
-             if(iVu!=null){
-                 iVu.onRefresh();
-             }
-            }
-        });
+        vuClass=vu.getClass();
+        setBackgroundColor(getResources().getColor(R.color.white));
+        setVisibility(GONE);
 
     }
     public StateLayout(Context context, AttributeSet attrs) {
@@ -41,28 +32,42 @@ public class StateLayout extends RelativeLayout {
     public StateLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-    public void setErrorView(View view){
-        removeView(errorView);
-        errorView=view;
+
+    public void setEmptyView(View emptyView){
+        this.emptyView=emptyView;
+        RelativeLayout.LayoutParams layoutParams1=  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(emptyView,layoutParams1);
     }
-    public void setEmptyView(View view){
-        removeView(emptyView);
-        emptyView=view;
+    public void setErrorView(View errorView){
+        this.errorView=errorView;
+        RelativeLayout.LayoutParams layoutParams2=  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(errorView,layoutParams2);
     }
     public void hintState(){
         setVisibility(GONE);
     }
 
-    public void onErrorState(){
+    public void errorState(){
         setVisibility(VISIBLE);
-        errorView.setVisibility(VISIBLE);
-        emptyView.setVisibility(GONE);
+        if(errorView!=null){
+            errorView.setVisibility(VISIBLE);
+        }
+        if(emptyView!=null){
+            emptyView.setVisibility(GONE);
+        }
+
+
     }
 
-    public void onEmptyState(){
+    public void emptyState(){
         setVisibility(VISIBLE);
-        errorView.setVisibility(GONE);
-        emptyView.setVisibility(VISIBLE);
+        if(errorView!=null){
+            errorView.setVisibility(GONE);
+        }
+       if(emptyView!=null){
+           emptyView.setVisibility(VISIBLE);
+       }
+
     }
 
 

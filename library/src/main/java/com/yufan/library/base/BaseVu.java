@@ -1,7 +1,6 @@
 package com.yufan.library.base;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 
 import com.yufan.library.R;
 import com.yufan.library.inter.IVu;
+import com.yufan.library.inter.Vu;
 import com.yufan.library.util.PxUtil;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
@@ -25,7 +25,7 @@ import java.util.HashMap;
  * vu view模块基础类,
  */
 
-public class BaseVu implements Vu {
+public abstract class BaseVu implements Vu {
 
     private final HashMap<Integer, View> mViews = new HashMap<>();
     private RelativeLayout mRootLayout;
@@ -35,15 +35,7 @@ public class BaseVu implements Vu {
     private Context mContext;
     private IVu iVu;
 
-    /**
-     * 子类需要重写，页面layoutid
-     *
-     * @return
-     */
-    @Override
-    public int getLayoutId() {
-        return 0;
-    }
+
 
     /**
      * 子类需要重写，初始化头
@@ -56,18 +48,35 @@ public class BaseVu implements Vu {
     /**
      * 子类需要重写，初始化状态view
      */
-    protected StateLayout initStateLayout(StateLayout stateLayout) {
-        return stateLayout;
+    @Override
+    public void initStateLayout(StateLayout stateLayout) {
+      View  errorView=View.inflate(getContext(), R.layout.layout_error,null);
+        View emptyView=View.inflate(getContext(),R.layout.layout_empty,null);
+        errorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(iVu!=null){
+                    iVu.onRefresh();
+                }
+            }
+        });
+        stateLayout.setErrorView(errorView);
+        stateLayout.setEmptyView(emptyView);
+
     }
 
 
     /**
      * 子类需要重写，要覆盖viewgroup id
      */
-    protected int getRootStateLayout() {
+    @Override
+    public int getRootStateLayout() {
         return R.id.root_content_id;
     }
-
+    @Override
+    public final View getView() {
+        return mRootLayout;
+    }
     public final Context getContext() {
         return mContext;
     }
@@ -93,10 +102,7 @@ public class BaseVu implements Vu {
         initState();
     }
 
-    @Override
-    public final View getView() {
-        return mRootLayout;
-    }
+
 
     /**
      * 添加头
@@ -124,7 +130,8 @@ public class BaseVu implements Vu {
      * 初始化状态view
      */
     private final void initState() {
-        mStateLayout = initStateLayout(new StateLayout(this));
+        mStateLayout=    new StateLayout(this);
+        initStateLayout(mStateLayout);
         if (mStateLayout != null && getRootStateLayout() != 0) {
             ViewGroup stateViewGroup = mRootLayout.findViewById(getRootStateLayout());
             if (stateViewGroup != null) {
@@ -133,6 +140,7 @@ public class BaseVu implements Vu {
                 stateViewGroup.addView(mStateLayout, layoutParams);
             }
         }
+
     }
 
 
@@ -140,12 +148,12 @@ public class BaseVu implements Vu {
         mStateLayout.hintState();
     }
 
-    public final void onErrorState() {
-        mStateLayout.onErrorState();
+    public final void errorState() {
+        mStateLayout.errorState();
     }
 
-    public final void onEmptyState() {
-        mStateLayout.onEmptyState();
+    public final void emptyState() {
+        mStateLayout.emptyState();
     }
 
 

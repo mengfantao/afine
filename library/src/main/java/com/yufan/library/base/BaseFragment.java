@@ -24,8 +24,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
-        initData();
+
     }
 
     @Nullable
