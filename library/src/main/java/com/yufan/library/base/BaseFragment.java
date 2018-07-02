@@ -15,7 +15,8 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by mengfantao on 18/3/16.
- * 所有fragment基类
+ * 所有fragment基类,与vu绑定，在baseFragment中实现业务逻辑相关，在vu中实现ui相关，
+ *
  */
 
 public abstract class BaseFragment<V extends BaseVu> extends SupportFragment implements IFragment {
@@ -49,7 +50,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
      *
      * @return
      */
-    public SupportFragment getRootFragment() {
+    public final SupportFragment getRootFragment() {
         SupportFragment fragment = this;
         while (fragment.getParentFragment() != null) {
             fragment = (SupportFragment) fragment.getParentFragment();
@@ -57,7 +58,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         return fragment;
     }
 
-    protected void onBindVu() {
+    protected  void onBindVu() {
         vu.setiVu(new IVu() {
             @Override
             public void onRefresh() {
@@ -76,5 +77,5 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         });
     }
 
-    protected abstract Class<V> getVuClass();
+    protected  abstract Class<V> getVuClass();
 }

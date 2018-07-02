@@ -8,6 +8,10 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 
 /**
  * Created by mengfantao on 18/3/30.
+ * 列表基础类，继承自baseFragment，需重写onBindVu,增加onLoadMore接口，
+ * YFRecyclerView 为列表封装RecyclerView，只需要调initRecyclerview()初始化即可
+ *
+ *
  */
 
 public abstract class BaseListFragment extends BaseFragment implements IListFragment {
