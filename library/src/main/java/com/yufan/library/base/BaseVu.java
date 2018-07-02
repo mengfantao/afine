@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yufan.library.R;
+import com.yufan.library.inter.IVu;
 import com.yufan.library.util.PxUtil;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
@@ -25,13 +26,22 @@ import java.util.HashMap;
  */
 
 public  class BaseVu implements Vu {
+    
     private HashMap<Integer,View> mViews = new HashMap<>();
     private RelativeLayout mRootLayout;
     private View mContentLayout;
     private StateLayout mStateLayout;
     protected AppToolbar mToolbarLayout;
     private Context mContext;
+    private IVu iVu;
 
+    public IVu getiVu() {
+        return iVu;
+    }
+
+    public void setiVu(IVu iVu) {
+        this.iVu = iVu;
+    }
 
     @Override
     public void init(LayoutInflater inflater, ViewGroup container) {
@@ -85,8 +95,8 @@ public  class BaseVu implements Vu {
      */
     private void initState(){
         mStateLayout=initStateLayout(new StateLayout(this));
-        if(mStateLayout!=null&&initRootStateLayout()!=0){
-            ViewGroup stateViewGroup= mRootLayout.findViewById(initRootStateLayout());
+        if(mStateLayout!=null&&getRootStateLayout()!=0){
+            ViewGroup stateViewGroup= mRootLayout.findViewById(getRootStateLayout());
             if(stateViewGroup!=null){
                 RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -105,7 +115,7 @@ public  class BaseVu implements Vu {
     /**
      *  要覆盖viewgroup id
      */
-    protected int initRootStateLayout(){
+    protected int getRootStateLayout(){
         return R.id.root_content_id;
     }
 
@@ -115,6 +125,18 @@ public  class BaseVu implements Vu {
     @Override
     public boolean initTitle(AppToolbar toolbar) {
         return false;
+    }
+
+    public void hintState(){
+        mStateLayout.hintState();
+    }
+
+    public void onErrorState(){
+        mStateLayout.onErrorState();
+    }
+
+    public void onEmptyState(){
+        mStateLayout.onEmptyState();
     }
 
 

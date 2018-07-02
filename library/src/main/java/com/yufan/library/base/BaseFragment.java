@@ -4,23 +4,12 @@ package com.yufan.library.base;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.yufan.library.R;
 import com.yufan.library.inter.IFragment;
-import com.yufan.library.util.PxUtil;
-import com.yufan.library.widget.AppToolbar;
-
-import java.util.HashMap;
+import com.yufan.library.inter.IVu;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -69,6 +58,22 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
     }
 
     protected void onBindVu() {
+        vu.setiVu(new IVu() {
+            @Override
+            public void onRefresh() {
+                BaseFragment.this.onRefresh();
+            }
+
+            @Override
+            public void onLoadMore(int index) {
+
+            }
+
+            @Override
+            public void finish() {
+                BaseFragment.this.pop();
+            }
+        });
     }
 
     protected abstract Class<V> getVuClass();

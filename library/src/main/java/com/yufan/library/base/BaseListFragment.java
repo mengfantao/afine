@@ -2,6 +2,7 @@ package com.yufan.library.base;
 
 
 import com.yufan.library.inter.IListFragment;
+import com.yufan.library.inter.IVu;
 import com.yufan.library.manager.PageManager;
 import com.yufan.library.view.recycler.YFRecyclerView;
 
@@ -33,4 +34,24 @@ public abstract class BaseListFragment extends BaseFragment implements IListFrag
             }
         });
     }
+
+    protected void onBindVu() {
+        vu.setiVu(new IVu() {
+            @Override
+            public void onRefresh() {
+                BaseListFragment.this.onRefresh();
+            }
+
+            @Override
+            public void onLoadMore(int index) {
+                BaseListFragment.this.onLoadMore(index);
+            }
+
+            @Override
+            public void finish() {
+                BaseListFragment.this.pop();
+            }
+        });
+    }
+
 }

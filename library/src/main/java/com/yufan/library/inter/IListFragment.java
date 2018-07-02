@@ -6,5 +6,5 @@ package com.yufan.library.inter;
 
 public interface IListFragment {
     void onLoadMore(int index);
-    void onRefresh();
+
 }

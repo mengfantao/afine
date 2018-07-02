@@ -15,5 +15,7 @@ public interface IFragment {
 
     void initView(View view);
 
+    void onRefresh();
+
 
 }
