@@ -147,9 +147,7 @@ public abstract class BaseVu implements Vu {
     public final void setStateGone() {
         mStateLayout.setVisibility(View.GONE);
     }
-    public final void setStateVisibility() {
-        mStateLayout.setVisibility(View.VISIBLE);
-    }
+
     public final void setStateError() {
         mStateLayout.setStateError();
     }
