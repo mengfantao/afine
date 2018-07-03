@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 
 import com.yufan.library.R;
 import com.yufan.library.base.BaseVu;
-import com.yufan.library.inter.IVu;
 
 /**
  * 状态layout

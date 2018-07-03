@@ -38,7 +38,7 @@ public class TestVu extends BaseVu {
             @Override
             public void onClick(View view) {
 
-                getiVu().onRefresh();
+                getVuCallBack().onRefresh();
             }
         });
 

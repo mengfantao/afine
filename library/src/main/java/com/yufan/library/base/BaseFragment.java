@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yufan.library.inter.IFragment;
-import com.yufan.library.inter.IVu;
+import com.yufan.library.inter.VuCallBack;
 
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -58,7 +58,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
     }
 
     protected  void onBindVu() {
-        vu.setiVu(new IVu() {
+        vu.setVuCallBack(new VuCallBack() {
             @Override
             public void onRefresh() {
                 BaseFragment.this.onRefresh();

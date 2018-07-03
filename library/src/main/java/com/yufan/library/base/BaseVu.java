@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yufan.library.R;
-import com.yufan.library.inter.IVu;
+import com.yufan.library.inter.VuCallBack;
 import com.yufan.library.inter.Vu;
 import com.yufan.library.util.PxUtil;
 import com.yufan.library.widget.AppToolbar;
@@ -34,7 +34,7 @@ public abstract class BaseVu implements Vu {
     private StateLayout mStateLayout;
     protected AppToolbar mToolbarLayout;
     private Context mContext;
-    private IVu iVu;
+    private VuCallBack vuCallBack;
 
 
 
@@ -70,12 +70,12 @@ public abstract class BaseVu implements Vu {
         return mContext;
     }
 
-    public final IVu getiVu() {
-        return iVu;
+    public final VuCallBack getVuCallBack() {
+        return vuCallBack;
     }
 
-    public final void setiVu(IVu iVu) {
-        this.iVu = iVu;
+    public final void setVuCallBack(VuCallBack vuCallBack) {
+        this.vuCallBack = vuCallBack;
     }
 
     @Override
