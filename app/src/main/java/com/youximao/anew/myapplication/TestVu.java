@@ -28,7 +28,7 @@ public class TestVu extends BaseVu {
     @Override
     public void initStateLayout(StateLayout stateLayout) {
         super.initStateLayout(stateLayout);
-     View view=   View.inflate(getContext(),R.layout.empty_view,null);
+    // View view=   View.inflate(getContext(),R.layout.empty_view,null);
       // stateLayout.setEmptyView(view);
        stateLayout.setVisibility(View.VISIBLE);
     }
