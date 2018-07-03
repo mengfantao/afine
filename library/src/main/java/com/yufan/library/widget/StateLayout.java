@@ -19,21 +19,13 @@ public class StateLayout extends RelativeLayout {
     private RelativeLayout rl_empty;
     private RelativeLayout rl_error;
     Class vuClass;
-    public StateLayout(final BaseVu vu) {
+    public StateLayout( BaseVu vu) {
         this(vu.getContext(), null);
         vuClass=vu.getClass();
         setBackgroundColor(getResources().getColor(R.color.white));
         View.inflate(getContext(),R.layout.state_layout,this);
         rl_empty= findViewById(R.id.rl_empty);
         rl_error=  findViewById(R.id.rl_error);
-        rl_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(vu.getiVu()!=null){
-                    vu.getiVu().onRefresh();
-                }
-            }
-        });
     }
     public StateLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -51,6 +43,14 @@ public class StateLayout extends RelativeLayout {
         rl_error.removeAllViews();
         RelativeLayout.LayoutParams layoutParams2=  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         rl_error.addView(errorView,layoutParams2);
+    }
+
+
+    public View getErrorView(){
+        return rl_error;
+    }
+    public View getEmptyView(){
+        return rl_empty;
     }
 
 

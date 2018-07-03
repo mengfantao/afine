@@ -51,18 +51,7 @@ public abstract class BaseVu implements Vu {
      */
     @Override
     public void initStateLayout(StateLayout stateLayout) {
-      View  errorView=View.inflate(getContext(), R.layout.layout_error,null);
-        View emptyView=View.inflate(getContext(),R.layout.layout_empty,null);
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(iVu!=null){
-                    iVu.onRefresh();
-                }
-            }
-        });
-        stateLayout.setEmptyView(emptyView);
-        stateLayout.setErrorView(errorView);
+
     }
 
 

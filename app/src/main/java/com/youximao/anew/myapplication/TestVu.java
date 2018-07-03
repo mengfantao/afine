@@ -33,10 +33,15 @@ public class TestVu extends BaseVu {
 
     @Override
     public void initStateLayout(StateLayout stateLayout) {
-        super.initStateLayout(stateLayout);
-     View view=   View.inflate(getContext(),R.layout.empty_view,null);
-      stateLayout.setErrorView(view);
-      setStateEmpty();
+        setStateEmpty();
+        stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getiVu().onRefresh();
+            }
+        });
+
     }
 
     @Override
