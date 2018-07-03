@@ -8,15 +8,33 @@
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
         android:text="测试头部"
+        android:textColor="@color/white"
+        android:gravity="center"
         android:layout_height="wrap_content" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/rl_content"
-        android:layout_height="match_parent">
+        android:layout_weight="1"
+        android:layout_height="0dp">
         <TextView
             android:layout_width="match_parent"
             android:text="测试内容区域"
+            android:textColor="@color/white"
+            android:gravity="center"
             android:background="@color/color_main"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl_content2"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="测试内容区域2"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/c_ffd39b"
             android:layout_height="match_parent" />
     </RelativeLayout>
 </LinearLayout>

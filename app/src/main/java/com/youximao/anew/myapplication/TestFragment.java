@@ -18,6 +18,7 @@ public class TestFragment extends BaseFragment<TestVu> {
 
     @Override
     protected Class<TestVu> getVuClass() {
+
         return TestVu.class;
     }
 }

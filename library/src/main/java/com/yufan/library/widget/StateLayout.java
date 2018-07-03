@@ -43,9 +43,7 @@ public class StateLayout extends RelativeLayout {
         RelativeLayout.LayoutParams layoutParams2=  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         addView(errorView,layoutParams2);
     }
-    public void setStateGone(){
-        setVisibility(GONE);
-    }
+
 
     public void setStateError(){
         setVisibility(VISIBLE);
