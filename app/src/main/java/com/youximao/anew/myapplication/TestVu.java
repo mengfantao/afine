@@ -24,6 +24,12 @@ public class TestVu extends BaseVu {
         return R.id.rl_content;
     }
 
+    @Override
+    public void initView(View view) {
+
+
+    }
+
 
     @Override
     public void initStateLayout(StateLayout stateLayout) {

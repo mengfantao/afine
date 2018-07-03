@@ -1,6 +1,7 @@
 package com.yufan.library.base;
 
 import android.content.Context;
+import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +61,9 @@ public abstract class BaseVu implements Vu {
                 }
             }
         });
-        stateLayout.setErrorView(errorView);
         stateLayout.setEmptyView(emptyView);
+        stateLayout.setErrorView(errorView);
+
 
     }
 
@@ -100,6 +102,7 @@ public abstract class BaseVu implements Vu {
         mRootLayout.addView(mContentLayout, layoutParams);
         addTitle(mToolbarLayout, initTitle(mToolbarLayout));
         initState();
+        initView(mRootLayout);
     }
 
 
@@ -143,17 +146,16 @@ public abstract class BaseVu implements Vu {
 
     }
 
-
-    public final void hintState() {
-        mStateLayout.hintState();
+    public final void setStateGone() {
+        mStateLayout.setStateGone();
     }
 
-    public final void errorState() {
-        mStateLayout.errorState();
+    public final void setStateError() {
+        mStateLayout.setStateError();
     }
 
-    public final void emptyState() {
-        mStateLayout.emptyState();
+    public final void setStateEmpty() {
+        mStateLayout.setStateEmpty();
     }
 
 
@@ -163,31 +165,31 @@ public abstract class BaseVu implements Vu {
      * @param id
      * @return
      */
-    protected final TextView findTextView(int id) {
+    protected final TextView findTextView(@IdRes int id) {
         return $(id, TextView.class);
     }
 
-    protected final ImageView findImageView(int id) {
+    protected final ImageView findImageView(@IdRes int id) {
         return $(id, ImageView.class);
     }
 
-    protected final CheckBox findCheckBox(int id) {
+    protected final CheckBox findCheckBox(@IdRes int id) {
         return $(id, CheckBox.class);
     }
 
-    protected final EditText findEditText(int id) {
+    protected final EditText findEditText(@IdRes int id) {
         return $(id, EditText.class);
     }
 
-    protected final Button findButton(int id) {
+    protected final Button findButton(@IdRes int id) {
         return $(id, Button.class);
     }
 
-    protected final View findView(int id) {
+    protected final View findView(@IdRes int id) {
         return $(id, View.class);
     }
 
-    protected final <T> T $(int id, Class<T> clazz) {
+    protected final <T> T $(@IdRes int id, Class<T> clazz) {
         if (mViews.containsKey(id)) {
             return (T) mViews.get(id);
         } else {

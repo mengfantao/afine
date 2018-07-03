@@ -13,7 +13,7 @@ public class TestFragment extends BaseFragment<TestVu> {
 
     @Override
     public void onRefresh() {
-
+        vu.setStateGone();
     }
 
     @Override

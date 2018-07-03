@@ -43,11 +43,11 @@ public class StateLayout extends RelativeLayout {
         RelativeLayout.LayoutParams layoutParams2=  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         addView(errorView,layoutParams2);
     }
-    public void hintState(){
+    public void setStateGone(){
         setVisibility(GONE);
     }
 
-    public void errorState(){
+    public void setStateError(){
         setVisibility(VISIBLE);
         if(errorView!=null){
             errorView.setVisibility(VISIBLE);
@@ -59,7 +59,7 @@ public class StateLayout extends RelativeLayout {
 
     }
 
-    public void emptyState(){
+    public void setStateEmpty(){
         setVisibility(VISIBLE);
         if(errorView!=null){
             errorView.setVisibility(GONE);
