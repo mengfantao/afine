@@ -14,7 +14,7 @@ import com.yufan.library.view.recycler.YFRecyclerView;
  *
  */
 
-public abstract class BaseListFragment extends BaseFragment implements IListFragment {
+public abstract class BaseListFragment<V extends BaseVu> extends BaseFragment implements IListFragment {
 
 
 

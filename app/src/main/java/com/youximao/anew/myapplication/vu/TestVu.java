@@ -1,8 +1,9 @@
-package com.youximao.anew.myapplication;
+package com.youximao.anew.myapplication.vu;
 
 import android.view.View;
 import android.widget.TextView;
 
+import com.youximao.anew.myapplication.R;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
@@ -26,6 +27,7 @@ public class TestVu extends BaseVu {
 
     @Override
     public void initView(View view) {
+
 
 
     }

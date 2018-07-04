@@ -46,9 +46,7 @@ public abstract class YFListHttpCallBack extends BaseHttpCallBack {
 
     @Override
     public void onError(int id, Exception e) {
-        if(pageManager.getList().size()==0){
-            onEmpty();
-        }
+
         pageManager.setPageState(PageManager.PAGE_STATE_ERROR);
         DialogManager.getInstance().toast(e.getMessage());
         onFinish();

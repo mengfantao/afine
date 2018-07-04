@@ -1,7 +1,8 @@
 package com.youximao.anew.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.youximao.anew.myapplication.fragment.TestFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
 

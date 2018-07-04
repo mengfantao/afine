@@ -41,7 +41,7 @@ public class ApiManager {
                 Request authorised = chain.request().newBuilder()
                        // .headers(mHeaders)
                         .addHeader("paltform","android")
-                        .addHeader("userId",UserManager.getInstance().getUserId())
+                        .addHeader("userId","userid")
                         .addHeader("Authorization",  Base64.encodeToString(("JWT " +UserManager.getInstance().getToken()).getBytes(), Base64.NO_WRAP))
                         .build();
                 return chain.proceed(authorised);

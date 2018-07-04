@@ -76,5 +76,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         });
     }
 
+
+
     protected  abstract Class<V> getVuClass();
 }
