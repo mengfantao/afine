@@ -16,14 +16,14 @@ public  abstract class BaseHttpCallBack implements IHttpCallBack {
 
     public abstract void onSuccess(ApiBean mApiBean);
 
-    public  void onError(int id, Exception e){
+    public abstract void onError(int id, Exception e);
 
-    }
-    public   void onFinish(){
+    public  abstract void onFinish();
 
-    }
+
+
     @Override
-    public void onResponse(ApiBean mApiBean) {
+    public final void onResponse(ApiBean mApiBean) {
         if(ApiBean.checkOK(mApiBean.getCode())){
             onSuccess(mApiBean);
         }else {
@@ -32,7 +32,7 @@ public  abstract class BaseHttpCallBack implements IHttpCallBack {
     }
 
     @Override
-    public void onFailure(int id, Exception e) {
+    public final void onFailure(int id, Exception e) {
         DialogManager.getInstance().toast(e.getMessage());
         onError( id,  e);
     }

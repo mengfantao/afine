@@ -51,4 +51,9 @@ public abstract class YFListHttpCallBack extends BaseHttpCallBack {
         DialogManager.getInstance().toast(e.getMessage());
         onFinish();
     }
+
+    @Override
+    public void onFinish() {
+
+    }
 }
