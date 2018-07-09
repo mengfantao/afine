@@ -1,15 +1,21 @@
 package com.yufan.library.api;
 
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.yufan.library.manager.UserManager;
+import com.yufan.library.util.YFUtil;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -39,10 +45,8 @@ public class ApiManager {
             public Response intercept(Chain chain) throws IOException {
 
                 Request authorised = chain.request().newBuilder()
-                       // .headers(mHeaders)
-                        .addHeader("paltform","android")
-                        .addHeader("userId","userid")
-                        .addHeader("Authorization",  Base64.encodeToString(("JWT " +UserManager.getInstance().getToken()).getBytes(), Base64.NO_WRAP))
+                       .headers(Headers.of(getApiHeader()))
+
                         .build();
                 return chain.proceed(authorised);
 
@@ -81,6 +85,7 @@ public class ApiManager {
 
 
     public  void callEnqueue(Call<ResponseBody> call, final BaseHttpCallBack handler) {
+        call.request().body();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
@@ -112,5 +117,33 @@ public class ApiManager {
             }
         });
 
+    }
+
+
+    /**
+     * 获取HTTP header信息
+     *
+     * @return
+     */
+    private  Map<String, String> getApiHeader() {
+        LinkedHashMap apiHeaders = new LinkedHashMap<String, String>();
+        apiHeaders.put("Accept-Language", Locale.getDefault().toString() );
+        apiHeaders.put("Connection", "Keep-Alive");
+        apiHeaders.put("User-Agent", "");
+        apiHeaders.put("cpu", YFUtil.getCpuName());
+        apiHeaders.put("hardware", YFUtil.getprop("ro.hardware", ""));
+        apiHeaders.put("cpu_abi", Build.CPU_ABI);
+        apiHeaders.put("product_cpu_abi", YFUtil.getCpuProduct());
+        apiHeaders.put("terminalType", "2"); // 1:ios; 2:android
+        apiHeaders.put("terminalName", Build.DEVICE + "");
+        apiHeaders.put("channelId", "");
+        apiHeaders.put("version", YFUtil.getVersionName() + "");
+        apiHeaders.put("devicesId", YFUtil.getIMEI());
+        apiHeaders.put("sid", "");
+        apiHeaders.put("apiVersion", "");
+        apiHeaders.put("paltform","android");
+        apiHeaders.put("userId","");
+        apiHeaders.put("token","");
+        return apiHeaders;
     }
 }

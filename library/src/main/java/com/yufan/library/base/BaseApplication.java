@@ -30,7 +30,7 @@ private static BaseApplication instance;
             return;
         }
         instance=this;
-        //Bugly.init(getApplicationContext(), "6ab19dd791", false);
+        Bugly.init(getApplicationContext(), "6ab19dd791", false);
         Fresco.initialize(this);
     }
 

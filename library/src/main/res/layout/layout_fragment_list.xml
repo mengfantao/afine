@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yufan.library.view.ptr.PtrClassicFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+   android:id="@+id/ptr"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+<com.yufan.library.view.recycler.YFRecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/recyclerview"
+    android:background="#fff2f4f7"
+    />
+</com.yufan.library.view.ptr.PtrClassicFrameLayout>

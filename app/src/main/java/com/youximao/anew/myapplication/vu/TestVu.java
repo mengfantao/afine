@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.youximao.anew.myapplication.R;
+import com.yufan.library.base.BaseListVu;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
@@ -12,7 +13,7 @@ import com.yufan.library.widget.StateLayout;
  * Created by mengfantao on 18/7/2.
  */
 
-public class TestVu extends BaseVu {
+public class TestVu extends BaseListVu {
 
 
     @Override
@@ -30,6 +31,11 @@ public class TestVu extends BaseVu {
 
 
 
+    }
+
+    @Override
+    public int getRecyclerViewId() {
+        return 0;
     }
 
 

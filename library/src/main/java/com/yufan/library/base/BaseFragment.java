@@ -12,6 +12,8 @@ import com.yufan.library.inter.IFragment;
 import com.yufan.library.inter.VuCallBack;
 
 import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * Created by mengfantao on 18/3/16.
@@ -25,6 +27,11 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+    }
+
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        return new DefaultHorizontalAnimator(); //super.onCreateFragmentAnimator();
     }
 
     @Nullable
@@ -44,6 +51,13 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         return view;
 
     }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+
+    }
+
     /**
      * 获取根fragment 即activity加载的第一个fragment
      *

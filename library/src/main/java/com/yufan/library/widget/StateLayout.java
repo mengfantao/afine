@@ -17,10 +17,10 @@ import com.yufan.library.base.BaseVu;
 public class StateLayout extends RelativeLayout {
     private RelativeLayout rl_empty;
     private RelativeLayout rl_error;
-    Class vuClass;
+
     public StateLayout( BaseVu vu) {
         this(vu.getContext(), null);
-        vuClass=vu.getClass();
+
         setBackgroundColor(getResources().getColor(R.color.white));
         View.inflate(getContext(),R.layout.state_layout,this);
         rl_empty= findViewById(R.id.rl_empty);
