@@ -79,7 +79,7 @@ public abstract class BaseVu implements Vu {
     }
 
     @Override
-    public final void init(LayoutInflater inflater, ViewGroup container) {
+    public  void init(LayoutInflater inflater, ViewGroup container) {
         this.mContext = inflater.getContext();
         mRootLayout = new RelativeLayout(mContext);
         mRootLayout.setId(R.id.root_content_id);
@@ -89,7 +89,7 @@ public abstract class BaseVu implements Vu {
         mRootLayout.addView(mContentLayout, layoutParams);
         addTitle(mToolbarLayout, initTitle(mToolbarLayout));
         initState();
-        initView(mRootLayout);
+        initView(mContentLayout);
     }
 
 

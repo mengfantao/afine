@@ -1,7 +1,9 @@
 package com.yufan.library.base;
 
 import android.support.annotation.IdRes;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.yufan.library.R;
 import com.yufan.library.manager.PageManager;
@@ -18,14 +20,22 @@ public abstract class BaseListVu extends BaseVu {
         recyclerViewModel=  (YFRecyclerView) view.findViewById(getRecyclerViewId());
         initRecyclerview();
     }
+    @Override
     public YFRecyclerView getRecyclerViewModel(){
         return recyclerViewModel;
     }
 
 
+
     @Override
     public int getLayoutId() {
         return R.layout.layout_fragment_list;
+    }
+
+    @Override
+    public void init(LayoutInflater inflater, ViewGroup container) {
+        super.init(inflater, container);
+
     }
 
     @IdRes

@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class TestFragment extends BaseListFragment<TestVu> {
-    YFRecyclerView recyclerViewModel;
+
 
     @Override
     public void onRefresh() {
@@ -35,7 +35,7 @@ public class TestFragment extends BaseListFragment<TestVu> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        new YFListHttpCallBack(recyclerViewModel){
+        new YFListHttpCallBack(vu.getRecyclerViewModel()){
 
             @Override
             public void onEmpty() {

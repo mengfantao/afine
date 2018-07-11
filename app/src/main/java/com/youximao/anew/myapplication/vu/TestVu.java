@@ -15,28 +15,11 @@ import com.yufan.library.widget.StateLayout;
 
 public class TestVu extends BaseListVu {
 
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragemnt_test;
-    }
-
     @Override
     public int getRootStateLayout() {
         return R.id.rl_content;
     }
 
-    @Override
-    public void initView(View view) {
-
-
-
-    }
-
-    @Override
-    public int getRecyclerViewId() {
-        return 0;
-    }
 
 
     @Override
