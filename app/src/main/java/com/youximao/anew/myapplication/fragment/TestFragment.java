@@ -83,7 +83,7 @@ public class TestFragment extends BaseListFragment<TestVu>{
                 break;
             case "batchinsert":
 
-                plainDBManager.addPersons(1000,"游戏猫",20);
+                plainDBManager.addPersons(10000,"游戏猫",20);
 
                 break;
             case "query":
