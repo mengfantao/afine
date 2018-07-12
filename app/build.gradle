@@ -9,7 +9,15 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 接入 armeabi ,armeabi-v7a ,x86
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
     }
+    packagingOptions {
+        packagingOptions { exclude 'META-INF/rxjava.properties' }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
