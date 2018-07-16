@@ -26,7 +26,7 @@ import java.util.HashMap;
  * vu view模块基础类,
  */
 
-public abstract class BaseVu implements Vu {
+public abstract class BaseVu <T extends BasePresenter>implements Vu {
 
     private final HashMap<Integer, View> mViews = new HashMap<>();
     private RelativeLayout mRootLayout;
@@ -34,9 +34,11 @@ public abstract class BaseVu implements Vu {
     private StateLayout mStateLayout;
     protected AppToolbar mToolbarLayout;
     private Context mContext;
-    private VuCallBack vuCallBack;
-
-
+    protected T mPersenter;
+    @Override
+    public T getPresenter() {
+        return mPersenter;
+    }
 
     /**
      * 子类需要重写，初始化头
@@ -54,7 +56,6 @@ public abstract class BaseVu implements Vu {
 
     }
 
-
     /**
      * 子类需要重写，要覆盖viewgroup id
      */
@@ -70,13 +71,7 @@ public abstract class BaseVu implements Vu {
         return mContext;
     }
 
-    public final VuCallBack getVuCallBack() {
-        return vuCallBack;
-    }
 
-    public final void setVuCallBack(VuCallBack vuCallBack) {
-        this.vuCallBack = vuCallBack;
-    }
 
     @Override
     public  void init(LayoutInflater inflater, ViewGroup container) {

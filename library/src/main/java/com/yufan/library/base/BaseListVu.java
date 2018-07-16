@@ -13,7 +13,7 @@ import com.yufan.library.view.recycler.YFRecyclerView;
  * Created by mengfantao on 18/7/9.
  */
 
-public abstract class BaseListVu extends BaseVu {
+public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
     private YFRecyclerView recyclerViewModel;
     @Override
     public void initView(View view) {
@@ -25,6 +25,11 @@ public abstract class BaseListVu extends BaseVu {
         return recyclerViewModel;
     }
 
+    protected T mPersenter;
+    @Override
+    public T getPresenter() {
+        return mPersenter;
+    }
 
 
     @Override
@@ -32,11 +37,7 @@ public abstract class BaseListVu extends BaseVu {
         return R.layout.layout_fragment_list;
     }
 
-    @Override
-    public void init(LayoutInflater inflater, ViewGroup container) {
-        super.init(inflater, container);
 
-    }
 
     @IdRes
     public  int getRecyclerViewId(){
@@ -50,7 +51,7 @@ public abstract class BaseListVu extends BaseVu {
             public void onLoadMore(int index) {
                 if (recyclerViewModel.getPageManager().isIdle()) {
                     recyclerViewModel.getPageManager().setPageState(PageManager.PAGE_STATE_LOADING);
-                   getVuCallBack().onLoadMore(index);
+                   mPersenter.onLoadMore(index);
                 }
             }
             @Override
@@ -58,7 +59,7 @@ public abstract class BaseListVu extends BaseVu {
                 if (recyclerViewModel.getPageManager().isIdle()) {
                     recyclerViewModel.getPageManager().resetIndex();
                     recyclerViewModel.getPageManager().setPageState(PageManager.PAGE_STATE_LOADING);
-                    getVuCallBack().onRefresh();
+                    mPersenter.onRefresh();
                 }
             }
         });

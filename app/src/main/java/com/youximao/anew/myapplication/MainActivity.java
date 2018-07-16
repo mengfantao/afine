@@ -2,10 +2,8 @@ package com.youximao.anew.myapplication;
 
 import android.os.Bundle;
 
-import com.youximao.anew.myapplication.fragment.TestFragment;
+import com.youximao.anew.myapplication.operation.dbtest.TestFragment;
 import com.yufan.library.base.BaseActivity;
-
-import me.yokeyword.fragmentation.SupportActivity;
 
 public class MainActivity extends BaseActivity {
 

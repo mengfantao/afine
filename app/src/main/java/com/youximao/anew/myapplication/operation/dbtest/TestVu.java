@@ -1,4 +1,4 @@
-package com.youximao.anew.myapplication.vu;
+package com.youximao.anew.myapplication.operation.dbtest;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,13 +12,12 @@ import com.bigkoo.alertview.OnItemClickListener;
 import com.youximao.anew.myapplication.Person;
 import com.youximao.anew.myapplication.R;
 import com.yufan.library.base.BaseListVu;
+import com.yufan.library.base.BasePresenter;
 import com.yufan.library.base.BaseRecycleAdapter;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inter.ICallBack;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -26,13 +25,17 @@ import java.util.List;
  * Created by mengfantao on 18/7/2.
  */
 
-public class TestVu extends BaseListVu {
+public class TestVu extends BaseListVu <TaskDetailContract.Presenter> implements TaskDetailContract.View{
 
     @Override
     public int getRootStateLayout() {
         return R.id.rl_content;
     }
 
+    @Override
+    public void setPresenter(BasePresenter presenter) {
+
+    }
 
 
     @Override
@@ -41,55 +44,58 @@ public class TestVu extends BaseListVu {
         stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                getVuCallBack().onRefresh();
+               mPersenter.onRefresh();
             }
         });
 
     }
 
+
     @Override
     public boolean initTitle(AppToolbar toolbar) {
         toolbar.creatCenterView(TextView.class).setText("WCDB数据库");
 
-      TextView textView=  toolbar.creatRightView(TextView.class);
-      textView.setText("插入");
-      textView.setOnClickListener(new View.OnClickListener() {
+      TextView tvInsert=  toolbar.creatRightView(TextView.class);
+        tvInsert.setText("插入");
+        tvInsert.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               showInsertDialog();
           }
       });
-        TextView textView1=  toolbar.creatRightView(TextView.class);
-        textView1.setText("批量插入");
-        textView1.setOnClickListener(new View.OnClickListener() {
+        TextView tvBatchInsert=  toolbar.creatRightView(TextView.class);
+        tvBatchInsert.setText("批量插入");
+        tvBatchInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new Person("batchinsert","",0));
+                mPersenter.batchinsert();
+                mPersenter.onRefresh();
             }
         });
-        TextView textView2=  toolbar.creatRightView(TextView.class);
-        textView2.setText("更改");
-        textView2.setOnClickListener(new View.OnClickListener() {
+        TextView tvUpdate=  toolbar.creatRightView(TextView.class);
+        tvUpdate.setText("更改");
+        tvUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showUpdateDialog();
             }
         });
-        TextView textView3=  toolbar.creatRightView(TextView.class);
-        textView3.setText("删除");
-        textView3.setOnClickListener(new View.OnClickListener() {
+        TextView tvDel=  toolbar.creatRightView(TextView.class);
+        tvDel.setText("删除");
+        tvDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new Person("delete","",0));
+                mPersenter.delete();
+                mPersenter.onRefresh();
+
             }
         });
-        TextView textView4=  toolbar.creatRightView(TextView.class);
-        textView4.setText("查询");
-        textView4.setOnClickListener(new View.OnClickListener() {
+        TextView tvQuery=  toolbar.creatRightView(TextView.class);
+        tvQuery.setText("查询");
+        tvQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new Person("query","",0));
+                mPersenter.onRefresh();
             }
         });
         toolbar.build();
@@ -106,7 +112,11 @@ public class TestVu extends BaseListVu {
                 if(position==0){
                     if(!TextUtils.isEmpty(etName.getText())&&!TextUtils.isEmpty(etAge.getText())){
                         try {
-                            EventBus.getDefault().post(new Person("insert",etName.getText().toString(),Integer.parseInt(etAge.getText().toString())));
+                            Person person= new Person();
+                            person.setAge(Integer.parseInt(etAge.getText().toString()));
+                            person.setName(etName.getText().toString());
+                            mPersenter.insert(person);
+                            mPersenter.onRefresh();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -122,7 +132,7 @@ public class TestVu extends BaseListVu {
         ViewGroup extViewmoney = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.alertext_form, null);
         final EditText etName = (EditText) extViewmoney.findViewById(R.id.et_name);
         final EditText etAge = (EditText) extViewmoney.findViewById(R.id.et_age);
-        AlertView mAlertViewExtMoney = new AlertView("请输入", null, "取消", null, new String[]{"确定"}, getContext(), AlertView.Style.Alert, new OnItemClickListener() {
+        final AlertView mAlertViewExtMoney = new AlertView("请输入", null, "取消", null, new String[]{"确定"}, getContext(), AlertView.Style.Alert, new OnItemClickListener() {
             @Override
             public void onItemClick(Object o, int position) {
                 if(position==0){
@@ -131,7 +141,11 @@ public class TestVu extends BaseListVu {
                         if(!TextUtils.isEmpty(etAge.getText().toString())){
                            age= Integer.parseInt(etAge.getText().toString());
                         }
-                        EventBus.getDefault().post(new Person("update",etName.getText().toString(),age));
+                       Person person= new Person();
+                        person.setAge(age);
+                        person.setName(etName.getText().toString());
+                        mPersenter.update(person);
+                        mPersenter.onRefresh();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -142,8 +156,6 @@ public class TestVu extends BaseListVu {
         mAlertViewExtMoney.addExtView(extViewmoney);
         mAlertViewExtMoney.show();
     }
-
-
 
 
 }

@@ -15,8 +15,9 @@ public class PlainDBManager {
     private SQLiteDatabase mDB;
 
     public PlainDBManager(Context context) {
-        mDBHelper = new PlainDBHelper(context);
-        mDB = mDBHelper.getWritableDatabase();
+     // mDBHelper = new PlainDBHelper(context);
+       mDBHelper = new PlainDBHelper(context,"youximao".getBytes());
+         mDB = mDBHelper.getWritableDatabase();
     }
 
     public void addPersonData(Person person) {

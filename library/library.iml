@@ -138,7 +138,6 @@
     <orderEntry type="library" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-2.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="javax.annotation:javax.annotation-api:1.2@jar" level="project" />
     <orderEntry type="library" name="com.zhihu.android:matisse-0.4.3" level="project" />
-    <orderEntry type="library" name="org.greenrobot:eventbus:3.0.0@jar" level="project" />
     <orderEntry type="library" name="com.hedgehog.ratingbar:app-1.1.2" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/libammsdk.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:27.1.1@jar" level="project" />

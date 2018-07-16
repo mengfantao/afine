@@ -26,7 +26,11 @@ public class PlainDBHelper extends SQLiteOpenHelper {
         super(context, DEFAULT_NAME, null, DEFAULT_VERSION, null);
         this.mContext = context;
     }
+    public PlainDBHelper(Context context, byte[] password) {
+        super(context, DEFAULT_NAME, password, null, DEFAULT_VERSION, null);
+        this.mContext = context;
 
+    }
     /**
      * 表创建
      */
@@ -41,7 +45,12 @@ public class PlainDBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO
+
+
+
+       // db.execSQL("ALTER TABLE message ADD COLUMN sender TEXT;");
+
+
     }
 
     /**

@@ -44,22 +44,7 @@ public abstract class BaseListFragment <V extends BaseListVu> extends BaseFragme
 
 
     protected void onBindVu() {
-        vu.setVuCallBack(new VuCallBack() {
-            @Override
-            public void onRefresh() {
-                BaseListFragment.this.onRefresh();
-            }
 
-            @Override
-            public void onLoadMore(int index) {
-                BaseListFragment.this.onLoadMore(index);
-            }
-
-            @Override
-            public void finish() {
-                BaseListFragment.this.pop();
-            }
-        });
     }
 
 

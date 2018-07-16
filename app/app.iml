@@ -138,7 +138,6 @@
     <orderEntry type="library" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.zhihu.android:matisse-0.4.3" level="project" />
-    <orderEntry type="library" name="org.greenrobot:eventbus:3.0.0@jar" level="project" />
     <orderEntry type="library" name="com.hedgehog.ratingbar:app-1.1.2" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/libammsdk.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/fastjson-1.1.52.android.jar:unspecified@jar" level="project" />

@@ -167,15 +167,6 @@ public class YFRecyclerView extends WrapRecyclerView {
         });
 
     }
-    public void setData(List listSource,List subList){
-        if(getPageManager().getCurrentIndex()==0){
-            listSource.clear();
-            listSource.addAll(subList);
-        }else{
-            listSource.addAll(subList);
-        }
-        getAdapter().notifyDataSetChanged();
-    }
 
     public List getList(){
       return   mPageManager.getList();

@@ -12,6 +12,11 @@
         android:minLines="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c_e5e5e5"
+        />
     <EditText
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

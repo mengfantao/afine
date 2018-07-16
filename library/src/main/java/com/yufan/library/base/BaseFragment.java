@@ -21,7 +21,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  *
  */
 
-public abstract class BaseFragment<V extends BaseVu> extends SupportFragment implements IFragment {
+public abstract class BaseFragment<V extends BaseVu> extends SupportFragment implements BasePresenter {
     protected V vu;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         try {
             vu = getVuClass().newInstance();
             vu.init(inflater, container);
+            vu.setPresenter(this);
             onBindVu();
             view = vu.getView();
         } catch (java.lang.InstantiationException e) {
@@ -48,6 +49,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
         return view;
 
     }
@@ -72,22 +74,7 @@ public abstract class BaseFragment<V extends BaseVu> extends SupportFragment imp
     }
 
     protected  void onBindVu() {
-        vu.setVuCallBack(new VuCallBack() {
-            @Override
-            public void onRefresh() {
-                BaseFragment.this.onRefresh();
-            }
 
-            @Override
-            public void onLoadMore(int index) {
-
-            }
-
-            @Override
-            public void finish() {
-                BaseFragment.this.pop();
-            }
-        });
     }
 
 
