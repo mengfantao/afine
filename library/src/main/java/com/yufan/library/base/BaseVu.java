@@ -34,7 +34,7 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
     private StateLayout mStateLayout;
     protected AppToolbar mToolbarLayout;
     private Context mContext;
-    protected T mPersenter;
+    protected  T mPersenter;
     @Override
     public T getPresenter() {
         return mPersenter;

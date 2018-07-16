@@ -13,14 +13,20 @@ import com.youximao.anew.myapplication.R;
 import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BaseListVu;
 import com.yufan.library.base.BasePresenter;
+import com.yufan.library.manager.PageManager;
+import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
+
+import java.util.List;
 
 /**
  * Created by mengfantao on 18/7/2.
  */
 
 public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
+
+    private YFRecyclerView mYFRecyclerView;
 
     @Override
     public int getRootStateLayout() {
@@ -45,11 +51,16 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
 
     }
 
+    @Override
+    public void initView(View view) {
+
+     mYFRecyclerView= (YFRecyclerView) findView(R.id.recyclerview);
+    initRecyclerview(mYFRecyclerView);
+    }
 
     @Override
     public boolean initTitle(AppToolbar toolbar) {
         toolbar.creatCenterView(TextView.class).setText("WCDB数据库");
-
       TextView tvInsert=  toolbar.creatRightView(TextView.class);
         tvInsert.setText("插入");
         tvInsert.setOnClickListener(new View.OnClickListener() {
@@ -153,4 +164,17 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
     }
 
 
+    @Override
+    public void setDate(List<Person> persons) {
+        mYFRecyclerView.getList().clear();
+        mYFRecyclerView.getList().addAll(persons);
+        mYFRecyclerView.getAdapter().notifyDataSetChanged();
+        mYFRecyclerView.getPTR().refreshComplete();
+        mYFRecyclerView.getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
+    }
+
+    @Override
+    protected YFRecyclerView getRecyclerView() {
+        return mYFRecyclerView;
+    }
 }

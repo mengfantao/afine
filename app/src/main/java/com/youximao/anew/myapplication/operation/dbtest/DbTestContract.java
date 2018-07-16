@@ -20,13 +20,15 @@ package com.youximao.anew.myapplication.operation.dbtest;
 import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BasePresenter;
 
+import java.util.List;
+
 /**
  * This specifies the contract between the view and the presenter.
  */
 public interface DbTestContract {
 
     interface View  {
-
+    void setDate( List<Person> persons);
 
     }
 

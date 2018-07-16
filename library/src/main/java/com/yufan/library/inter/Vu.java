@@ -29,5 +29,4 @@ public interface Vu  <T extends BasePresenter>  {
     void initView(View view);
     void setPresenter(T presenter);
     T getPresenter();
-    YFRecyclerView getRecyclerViewModel();
 }

@@ -14,37 +14,18 @@ import com.yufan.library.view.recycler.YFRecyclerView;
  */
 
 public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
-    private YFRecyclerView recyclerViewModel;
-    @Override
-    public void initView(View view) {
-        recyclerViewModel=  (YFRecyclerView) view.findViewById(getRecyclerViewId());
-        initRecyclerview();
-    }
-    @Override
-    public YFRecyclerView getRecyclerViewModel(){
-        return recyclerViewModel;
-    }
-
     protected T mPersenter;
+    protected abstract YFRecyclerView getRecyclerView();
     @Override
     public T getPresenter() {
         return mPersenter;
     }
-
-
     @Override
     public int getLayoutId() {
         return R.layout.layout_fragment_list;
     }
 
-
-
-    @IdRes
-    public  int getRecyclerViewId(){
-        return R.id.recyclerview;
-    }
-
-    private  void initRecyclerview(){
+    protected   void initRecyclerview(final YFRecyclerView recyclerViewModel){
         recyclerViewModel.initPTR();
         recyclerViewModel.setOnPagerListener(new YFRecyclerView.OnPagerListener() {
             @Override
@@ -64,5 +45,4 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
             }
         });
     }
-
 }

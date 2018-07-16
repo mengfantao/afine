@@ -7,6 +7,9 @@ import android.view.View;
 
 import com.youximao.anew.myapplication.PlainDBManager;
 import com.youximao.anew.myapplication.bean.Person;
+import com.yufan.library.api.ApiBean;
+import com.yufan.library.api.BaseHttpCallBack;
+import com.yufan.library.api.YFListHttpCallBack;
 import com.yufan.library.base.BaseListFragment;
 import com.yufan.library.manager.PageManager;
 
@@ -19,21 +22,13 @@ import java.util.List;
  */
 
 public class TestFragment extends BaseListFragment<TestVu> implements DbTestContract.Presenter{
-
-
     private PlainDBManager plainDBManager;
-
     @Override
     public void onRefresh() {
         vu.setStateGone();
         List<Person>persons=  plainDBManager.getPersonListData();
-        vu.getRecyclerViewModel().getList().clear();
-        vu.getRecyclerViewModel().getList().addAll(persons);
-        vu.getRecyclerViewModel().getAdapter().notifyDataSetChanged();
-        vu.getRecyclerViewModel().getPTR().refreshComplete();
-        vu.getRecyclerViewModel().getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
+       vu.setDate(persons);
     }
-
     @Override
     protected Class<TestVu> getVuClass() {
 
@@ -49,11 +44,21 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vu.getRecyclerViewModel().setAdapter(new PersonAdapter(vu.getRecyclerViewModel().getList()));
+        vu.getRecyclerView().setAdapter(new PersonAdapter(vu.getRecyclerView().getList()));
+        YFListHttpCallBack yfListHttpCallBack=  new YFListHttpCallBack(vu.getRecyclerView()){
+            @Override
+            public void onEmpty() {
 
+            }
+
+            @Override
+            public List onListSuccess(ApiBean mApiBean) {
+                return null;
+            }
+
+
+        };
     }
-
-
 
     @Override
     public void onDestroy() {
@@ -66,13 +71,11 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
         onRefresh();
     }
 
-
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
 
     }
-
 
     @Override
     public void insert(Person person) {
