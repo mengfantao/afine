@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.tencent.wcdb.Cursor;
 import com.tencent.wcdb.database.SQLiteDatabase;
+import com.youximao.anew.myapplication.bean.Person;
 
 
 import java.util.ArrayList;

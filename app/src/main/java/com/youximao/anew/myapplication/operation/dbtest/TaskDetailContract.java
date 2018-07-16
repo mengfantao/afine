@@ -17,7 +17,7 @@
 package com.youximao.anew.myapplication.operation.dbtest;
 
 
-import com.youximao.anew.myapplication.Person;
+import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BasePresenter;
 
 /**

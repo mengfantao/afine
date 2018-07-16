@@ -1,4 +1,4 @@
-package com.youximao.anew.myapplication;
+package com.youximao.anew.myapplication.bean;
 
 /**
  * Created by mengfantao on 18/7/11.

@@ -9,17 +9,12 @@ import android.widget.TextView;
 
 import com.bigkoo.alertview.AlertView;
 import com.bigkoo.alertview.OnItemClickListener;
-import com.youximao.anew.myapplication.Person;
 import com.youximao.anew.myapplication.R;
+import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BaseListVu;
 import com.yufan.library.base.BasePresenter;
-import com.yufan.library.base.BaseRecycleAdapter;
-import com.yufan.library.base.BaseVu;
-import com.yufan.library.inter.ICallBack;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
-
-import java.util.List;
 
 /**
  * Created by mengfantao on 18/7/2.

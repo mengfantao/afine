@@ -1,10 +1,9 @@
 package com.youximao.anew.myapplication.operation.dbtest;
 
-import android.text.TextUtils;
 import android.widget.TextView;
 
-import com.youximao.anew.myapplication.Person;
 import com.youximao.anew.myapplication.R;
+import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BaseRecycleAdapter;
 
 import java.util.List;
