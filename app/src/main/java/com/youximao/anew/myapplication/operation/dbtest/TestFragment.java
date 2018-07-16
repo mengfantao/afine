@@ -18,7 +18,7 @@ import java.util.List;
  * Created by mengfantao on 18/7/2.
  */
 
-public class TestFragment extends BaseListFragment<TestVu> implements TaskDetailContract.Presenter{
+public class TestFragment extends BaseListFragment<TestVu> implements DbTestContract.Presenter{
 
 
     private PlainDBManager plainDBManager;

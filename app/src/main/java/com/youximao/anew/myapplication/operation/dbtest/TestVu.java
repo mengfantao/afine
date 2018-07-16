@@ -20,7 +20,7 @@ import com.yufan.library.widget.StateLayout;
  * Created by mengfantao on 18/7/2.
  */
 
-public class TestVu extends BaseListVu <TaskDetailContract.Presenter> implements TaskDetailContract.View{
+public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
 
     @Override
     public int getRootStateLayout() {

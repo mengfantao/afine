@@ -23,7 +23,7 @@ import com.yufan.library.base.BasePresenter;
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface TaskDetailContract {
+public interface DbTestContract {
 
     interface View  {
 
