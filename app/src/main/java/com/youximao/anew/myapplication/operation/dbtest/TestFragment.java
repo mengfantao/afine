@@ -25,7 +25,6 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
     private PlainDBManager plainDBManager;
     @Override
     public void onRefresh() {
-        vu.setStateGone();
         List<Person>persons=  plainDBManager.getPersonListData();
        vu.setDate(persons);
     }
@@ -45,7 +44,7 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         vu.getRecyclerView().setAdapter(new PersonAdapter(vu.getRecyclerView().getList()));
-        YFListHttpCallBack yfListHttpCallBack=  new YFListHttpCallBack(vu.getRecyclerView()){
+        YFListHttpCallBack yfListHttpCallBack=  new YFListHttpCallBack(vu){
             @Override
             public void onEmpty() {
 
@@ -57,6 +56,23 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
             }
 
 
+        };
+
+        BaseHttpCallBack callBack=new BaseHttpCallBack(vu) {
+            @Override
+            public void onSuccess(ApiBean mApiBean) {
+
+            }
+
+            @Override
+            public void onError(int id, Exception e) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
         };
     }
 

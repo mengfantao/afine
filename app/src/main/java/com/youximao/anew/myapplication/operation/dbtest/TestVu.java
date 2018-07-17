@@ -33,8 +33,6 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
         return R.id.rl_content;
     }
 
-
-
     @Override
     public void initStateLayout(StateLayout stateLayout) {
         setStateEmpty();
@@ -49,7 +47,6 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
 
     @Override
     public void initView(View view) {
-
      mYFRecyclerView= (YFRecyclerView) findView(R.id.recyclerview);
     initRecyclerview(mYFRecyclerView);
     }
@@ -172,7 +169,7 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
     }
 
     @Override
-    protected YFRecyclerView getRecyclerView() {
+    public YFRecyclerView getRecyclerView() {
         return mYFRecyclerView;
     }
 }

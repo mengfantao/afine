@@ -15,7 +15,7 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 
 public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
     protected T mPersenter;
-    protected abstract YFRecyclerView getRecyclerView();
+    public abstract YFRecyclerView getRecyclerView();
     @Override
     public T getPresenter() {
         return mPersenter;
@@ -49,4 +49,6 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
             }
         });
     }
+
+
 }

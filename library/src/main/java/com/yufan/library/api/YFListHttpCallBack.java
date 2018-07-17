@@ -1,5 +1,6 @@
 package com.yufan.library.api;
 
+import com.yufan.library.base.BaseListVu;
 import com.yufan.library.manager.DialogManager;
 import com.yufan.library.manager.PageManager;
 import com.yufan.library.view.recycler.YFRecyclerView;
@@ -13,12 +14,12 @@ import java.util.List;
 public abstract class YFListHttpCallBack extends BaseHttpCallBack {
 
     private PageManager  pageManager;
-    private YFRecyclerView mRecyclerView;
+    private BaseListVu vu;
     public abstract void onEmpty();
     public abstract List onListSuccess(ApiBean mApiBean);
-    public YFListHttpCallBack( YFRecyclerView mRecyclerView) {
-        this.pageManager = mRecyclerView.getPageManager();
-        this.mRecyclerView=mRecyclerView;
+    public YFListHttpCallBack(BaseListVu vu) {
+        this.pageManager = vu.getRecyclerView().getPageManager();
+        this.vu=vu;
     }
 
     private void setData(List listSource,List subList){
@@ -38,15 +39,18 @@ public abstract class YFListHttpCallBack extends BaseHttpCallBack {
         setData(pageManager.getList(),onListSuccess(mApiBean));
         if(pageManager.getList().size()==0){
             onEmpty();
+            vu.setStateEmpty();
+        }else {
+            vu.setStateGone();
         }
         pageManager.setPageState(PageManager.PAGE_STATE_NONE);
-        mRecyclerView.getAdapter().notifyDataSetChanged();
+        vu.getRecyclerView().getAdapter().notifyDataSetChanged();
         onFinish();
     }
 
     @Override
     public void onError(int id, Exception e) {
-
+        vu.setStateError();
         pageManager.setPageState(PageManager.PAGE_STATE_ERROR);
         DialogManager.getInstance().toast(e.getMessage());
         onFinish();
