@@ -10,16 +10,20 @@ import com.yufan.library.manager.UserManager;
 import com.yufan.library.util.YFUtil;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Headers;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -43,13 +47,21 @@ public class ApiManager {
         HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor(){
             @Override
             public Response intercept(Chain chain) throws IOException {
-
                 Request authorised = chain.request().newBuilder()
                        .headers(Headers.of(getApiHeader()))
-
                         .build();
-                return chain.proceed(authorised);
+                RequestBody requestBody= authorised.body();
+                Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+                Charset charset = Charset.forName("UTF-8");
+                MediaType contentType = requestBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset();
+                }
 
+                String paramsStr = buffer.readString(charset);
+                Log.d("http","body"+paramsStr);
+                return  chain.proceed(authorised);
             }
         };
         builder.addInterceptor(commonInterceptor);
@@ -90,6 +102,7 @@ public class ApiManager {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try {
+
                     int code = response.code();
                     if (code == 200) {
                         String mjson = response.body().string();

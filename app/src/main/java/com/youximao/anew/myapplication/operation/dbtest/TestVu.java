@@ -33,10 +33,6 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
         return R.id.rl_content;
     }
 
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-
-    }
 
 
     @Override
@@ -57,6 +53,8 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
      mYFRecyclerView= (YFRecyclerView) findView(R.id.recyclerview);
     initRecyclerview(mYFRecyclerView);
     }
+
+
 
     @Override
     public boolean initTitle(AppToolbar toolbar) {

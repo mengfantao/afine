@@ -21,6 +21,10 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
         return mPersenter;
     }
     @Override
+    public void setPresenter(Object presenter) {
+        mPersenter= (T) presenter;
+    }
+    @Override
     public int getLayoutId() {
         return R.layout.layout_fragment_list;
     }

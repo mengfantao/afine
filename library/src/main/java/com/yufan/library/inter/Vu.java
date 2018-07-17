@@ -11,7 +11,7 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
 
-public interface Vu  <T extends BasePresenter>  {
+public interface Vu  <T >  {
     void init(LayoutInflater inflater, ViewGroup container);
 
     View getView();

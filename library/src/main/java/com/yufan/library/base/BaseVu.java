@@ -40,6 +40,11 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
         return mPersenter;
     }
 
+
+    @Override
+    public void setPresenter(Object presenter) {
+        mPersenter= (T) presenter;
+    }
     /**
      * 子类需要重写，初始化头
      */
