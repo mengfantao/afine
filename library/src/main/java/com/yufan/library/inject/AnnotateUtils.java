@@ -63,4 +63,9 @@ public class AnnotateUtils {
         VuClass viewInject = object.getAnnotation(VuClass.class);
         return viewInject.value();
     }
+    public static String getTitle( BaseVu vu){
+        Class<? extends Object> object =    vu.getClass();
+        Title viewInject = object.getAnnotation(Title.class);
+        return viewInject.value();
+    }
 }

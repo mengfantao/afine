@@ -2,10 +2,12 @@ package com.yufan.library.base;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yufan.library.R;
 import com.yufan.library.inject.AnnotateUtils;
@@ -56,6 +58,14 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
         AnnotateUtils.injectViews(this);
         initView(mContentLayout);
     }
+
+    @Override
+    public boolean initTitle(AppToolbar appToolbar) {
+        TextView titleName= appToolbar.creatCenterView(TextView.class);
+        titleName.setText(AnnotateUtils.getTitle(this));
+        return true;
+    }
+
     /**
      * 添加头
      */

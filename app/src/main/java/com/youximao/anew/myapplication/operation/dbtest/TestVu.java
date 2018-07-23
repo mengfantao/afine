@@ -15,6 +15,7 @@ import com.yufan.library.base.BaseListVu;
 import com.yufan.library.inject.Find;
 import com.yufan.library.inject.FindLayout;
 import com.yufan.library.inject.FindRecyclerView;
+import com.yufan.library.inject.Title;
 import com.yufan.library.manager.PageManager;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
@@ -26,9 +27,11 @@ import java.util.List;
  */
 @FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
 @FindRecyclerView( R.id.recyclerview)
+@Title("测试数据库查询")
 public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
     @Find( R.id.et_age)
     private  TextView et_age;
+
     @Override
     public boolean initStateLayout(StateLayout stateLayout) {
         stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,7 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
 
     @Override
     public boolean initTitle(AppToolbar toolbar) {
+        super.initTitle(toolbar);
         toolbar.creatCenterView(TextView.class).setText("WCDB数据库");
       TextView tvInsert=  toolbar.creatRightView(TextView.class);
         tvInsert.setText("插入");
