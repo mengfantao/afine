@@ -12,9 +12,10 @@ import com.bigkoo.alertview.OnItemClickListener;
 import com.youximao.anew.myapplication.R;
 import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BaseListVu;
-import com.yufan.library.base.BasePresenter;
+import com.yufan.library.inject.Find;
+import com.yufan.library.inject.FindLayout;
+import com.yufan.library.inject.FindRecyclerView;
 import com.yufan.library.manager.PageManager;
-import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
 
@@ -23,35 +24,21 @@ import java.util.List;
 /**
  * Created by mengfantao on 18/7/2.
  */
-
+@FindLayout(layout = R.layout.layout_fragment_list,stateLayoutParent = R.id.rl_content)
+@FindRecyclerView( R.id.recyclerview)
 public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
-
-    private YFRecyclerView mYFRecyclerView;
-
+    @Find( R.id.et_age)
+    private  TextView et_age;
     @Override
-    public int getRootStateLayout() {
-        return R.id.rl_content;
-    }
-
-    @Override
-    public void initStateLayout(StateLayout stateLayout) {
-        setStateEmpty();
+    public boolean initStateLayout(StateLayout stateLayout) {
         stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                mPersenter.onRefresh();
             }
         });
-
+        return true;
     }
-
-    @Override
-    public void initView(View view) {
-     mYFRecyclerView= (YFRecyclerView) findView(R.id.recyclerview);
-    initRecyclerview(mYFRecyclerView);
-    }
-
-
 
     @Override
     public boolean initTitle(AppToolbar toolbar) {
@@ -161,15 +148,13 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
 
     @Override
     public void setDate(List<Person> persons) {
-        mYFRecyclerView.getList().clear();
-        mYFRecyclerView.getList().addAll(persons);
-        mYFRecyclerView.getAdapter().notifyDataSetChanged();
-        mYFRecyclerView.getPTR().refreshComplete();
-        mYFRecyclerView.getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
+       getRecyclerView().getList().clear();
+        getRecyclerView().getList().addAll(persons);
+        getRecyclerView().getAdapter().notifyDataSetChanged();
+        getRecyclerView().getPTR().refreshComplete();
+        getRecyclerView().getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
     }
 
-    @Override
-    public YFRecyclerView getRecyclerView() {
-        return mYFRecyclerView;
-    }
+
+
 }

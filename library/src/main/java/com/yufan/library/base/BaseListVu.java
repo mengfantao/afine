@@ -1,11 +1,9 @@
 package com.yufan.library.base;
 
 import android.support.annotation.IdRes;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.yufan.library.R;
+import com.yufan.library.inject.AnnotateUtils;
 import com.yufan.library.manager.PageManager;
 import com.yufan.library.view.recycler.YFRecyclerView;
 
@@ -15,7 +13,7 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 
 public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
     protected T mPersenter;
-    public abstract YFRecyclerView getRecyclerView();
+    private YFRecyclerView mYFRecyclerView;
     @Override
     public T getPresenter() {
         return mPersenter;
@@ -25,11 +23,17 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
         mPersenter= (T) presenter;
     }
     @Override
-    public int getLayoutId() {
-        return R.layout.layout_fragment_list;
+    public void initView(View view) {
+        int recyclerviewId=AnnotateUtils.getRecyclerView(this);
+        mYFRecyclerView= (YFRecyclerView) findViewById(recyclerviewId);
+        initRecyclerview(mYFRecyclerView);
+    }
+    public YFRecyclerView getRecyclerView() {
+        return mYFRecyclerView;
     }
 
-    protected   void initRecyclerview(final YFRecyclerView recyclerViewModel){
+
+    protected     void initRecyclerview(final YFRecyclerView recyclerViewModel){
         recyclerViewModel.initPTR();
         recyclerViewModel.setOnPagerListener(new YFRecyclerView.OnPagerListener() {
             @Override

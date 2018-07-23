@@ -55,9 +55,9 @@ public class ApiManager {
                 requestBody.writeTo(buffer);
                 Charset charset = Charset.forName("UTF-8");
                 MediaType contentType = requestBody.contentType();
-                if (contentType != null) {
-                    charset = contentType.charset();
-                }
+//                if (contentType != null) {
+//                    charset = contentType.charset();
+//                }
 
                 String paramsStr = buffer.readString(charset);
                 Log.d("http","body"+paramsStr);

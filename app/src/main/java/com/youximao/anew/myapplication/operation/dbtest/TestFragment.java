@@ -27,23 +27,6 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
     public void onRefresh() {
         List<Person>persons=  plainDBManager.getPersonListData();
        vu.setDate(persons);
-    }
-    @Override
-    protected Class<TestVu> getVuClass() {
-
-        return TestVu.class;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        plainDBManager=new   PlainDBManager(getContext());
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        vu.getRecyclerView().setAdapter(new PersonAdapter(vu.getRecyclerView().getList()));
         YFListHttpCallBack yfListHttpCallBack=  new YFListHttpCallBack(vu){
             @Override
             public void onEmpty() {
@@ -74,6 +57,24 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
 
             }
         };
+    }
+    @Override
+    protected Class<TestVu> getVuClass() {
+
+        return TestVu.class;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        plainDBManager=new   PlainDBManager(getContext());
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        vu.getRecyclerView().setAdapter(new PersonAdapter(vu.getRecyclerView().getList()));
+
     }
 
     @Override

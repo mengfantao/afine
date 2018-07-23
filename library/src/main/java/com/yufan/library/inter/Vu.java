@@ -13,19 +13,9 @@ import com.yufan.library.widget.StateLayout;
 
 public interface Vu  <T >  {
     void init(LayoutInflater inflater, ViewGroup container);
-
     View getView();
-
-    @LayoutRes
-    int getLayoutId();
-
     boolean initTitle(AppToolbar appToolbar);
-
-    void initStateLayout(StateLayout stateLayout);
-
-    @IdRes
-    int getRootStateLayout();
-
+     boolean initStateLayout(StateLayout stateLayout);
     void initView(View view);
     void setPresenter(T presenter);
     T getPresenter();
