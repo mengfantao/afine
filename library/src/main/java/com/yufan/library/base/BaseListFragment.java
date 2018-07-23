@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yufan.library.inject.AnnotateUtils;
 import com.yufan.library.inter.IListFragment;
 import com.yufan.library.inter.VuCallBack;
 import com.yufan.library.manager.PageManager;
@@ -29,7 +30,7 @@ public abstract class BaseListFragment <V extends BaseListVu> extends BaseFragme
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = null;
         try {
-            vu = getVuClass().newInstance();
+            vu =(V) AnnotateUtils.getVu(this).newInstance();
             vu.init(inflater, container);
             vu.setPresenter(this);
             onBindVu();
@@ -49,5 +50,5 @@ public abstract class BaseListFragment <V extends BaseListVu> extends BaseFragme
     }
 
 
-    protected  abstract Class<V> getVuClass();
+
 }

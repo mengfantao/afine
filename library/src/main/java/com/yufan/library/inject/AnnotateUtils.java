@@ -1,5 +1,8 @@
 package com.yufan.library.inject;
 
+import android.support.v4.app.Fragment;
+
+import com.yufan.library.base.BaseFragment;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inter.Vu;
 
@@ -44,7 +47,7 @@ public class AnnotateUtils {
        return value;
     }
     public static int getStateParentId(BaseVu vu){
-        Class<? extends Vu> object = vu.getClass(); // 获取activity的Class
+        Class<? extends Vu>  object = vu.getClass(); // 获取activity的Class
         FindLayout viewInject = object.getAnnotation(FindLayout.class);
         int value=  viewInject.statusLayoutParent();
         return value;
@@ -54,5 +57,10 @@ public class AnnotateUtils {
         FindRecyclerView viewInject = object.getAnnotation(FindRecyclerView.class);
         int value=  viewInject.value();
         return value;
+    }
+    public static Class getVu( Object vu){
+        Class<? extends Object> object =    vu.getClass();
+        VuClass viewInject = object.getAnnotation(VuClass.class);
+        return viewInject.value();
     }
 }

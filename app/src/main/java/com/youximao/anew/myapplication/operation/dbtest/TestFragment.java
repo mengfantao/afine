@@ -11,6 +11,7 @@ import com.yufan.library.api.ApiBean;
 import com.yufan.library.api.BaseHttpCallBack;
 import com.yufan.library.api.YFListHttpCallBack;
 import com.yufan.library.base.BaseListFragment;
+import com.yufan.library.inject.VuClass;
 import com.yufan.library.manager.PageManager;
 
 
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by mengfantao on 18/7/2.
  */
-
+@VuClass(TestVu.class)
 public class TestFragment extends BaseListFragment<TestVu> implements DbTestContract.Presenter{
     private PlainDBManager plainDBManager;
     @Override
