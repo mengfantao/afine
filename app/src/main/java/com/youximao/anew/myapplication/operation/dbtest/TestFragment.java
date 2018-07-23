@@ -31,23 +31,18 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
         YFListHttpCallBack yfListHttpCallBack=  new YFListHttpCallBack(vu){
             @Override
             public void onEmpty() {
-
             }
-
             @Override
             public List onListSuccess(ApiBean mApiBean) {
                 return null;
             }
-
 
         };
 
         BaseHttpCallBack callBack=new BaseHttpCallBack(vu) {
             @Override
             public void onSuccess(ApiBean mApiBean) {
-
             }
-
             @Override
             public void onError(int id, Exception e) {
 
@@ -60,24 +55,12 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
         };
     }
     @Override
-    protected Class<TestVu> getVuClass() {
-
-        return TestVu.class;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        plainDBManager=new   PlainDBManager(getContext());
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        plainDBManager=new   PlainDBManager(getContext());
         vu.getRecyclerView().setAdapter(new PersonAdapter(vu.getRecyclerView().getList()));
 
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -90,16 +73,9 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
     }
 
     @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-
-    }
-
-    @Override
     public void insert(Person person) {
         plainDBManager.addPersonData(person);
     }
-
     @Override
     public void delete() {
         plainDBManager.delPersonByAge("20");
