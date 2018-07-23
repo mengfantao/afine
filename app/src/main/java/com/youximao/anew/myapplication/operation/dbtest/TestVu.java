@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by mengfantao on 18/7/2.
  */
-@FindLayout(layout = R.layout.layout_fragment_list,stateLayoutParent = R.id.rl_content)
+@FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
 @FindRecyclerView( R.id.recyclerview)
 public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
     @Find( R.id.et_age)

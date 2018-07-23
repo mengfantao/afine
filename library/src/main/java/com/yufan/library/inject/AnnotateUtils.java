@@ -46,7 +46,7 @@ public class AnnotateUtils {
     public static int getStateParentId(BaseVu vu){
         Class<? extends Vu> object = vu.getClass(); // 获取activity的Class
         FindLayout viewInject = object.getAnnotation(FindLayout.class);
-        int value=  viewInject.stateLayoutParent();
+        int value=  viewInject.statusLayoutParent();
         return value;
     }
     public static int getRecyclerView(BaseVu vu){

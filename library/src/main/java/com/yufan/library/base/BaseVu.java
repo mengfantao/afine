@@ -47,7 +47,6 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
         this.mContext = inflater.getContext();
         mRootLayout = new RelativeLayout(mContext);
         mRootLayout.setId(R.id.root_content_id);
-
         mContentLayout = inflater.inflate(AnnotateUtils.getLayoutId(this), container, false);
         mToolbarLayout = new AppToolbar(mContext);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -56,7 +55,6 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
         initState();
         AnnotateUtils.injectViews(this);
         initView(mContentLayout);
-
     }
     /**
      * 添加头
@@ -95,7 +93,6 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
                 stateViewGroup.addView(mStateLayout, layoutParams);
             }
         }
-
     }
     public final void setStateGone() {
         mStateLayout.setVisibility(View.GONE);
@@ -109,5 +106,4 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
     public final View findViewById(@IdRes int id) {
         return getView().findViewById(id);
     }
-
 }

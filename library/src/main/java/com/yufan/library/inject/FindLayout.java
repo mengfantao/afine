@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FindLayout {
     int layout();
-    int stateLayoutParent() default 0;
+    int statusLayoutParent() default 0;
 }
