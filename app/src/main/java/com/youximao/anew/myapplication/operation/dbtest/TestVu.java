@@ -12,25 +12,25 @@ import com.bigkoo.alertview.OnItemClickListener;
 import com.youximao.anew.myapplication.R;
 import com.youximao.anew.myapplication.bean.Person;
 import com.yufan.library.base.BaseListVu;
-import com.yufan.library.inject.Find;
+import com.yufan.library.inject.FindView;
 import com.yufan.library.inject.FindLayout;
 import com.yufan.library.inject.FindRecyclerView;
 import com.yufan.library.inject.Title;
 import com.yufan.library.manager.PageManager;
 import com.yufan.library.widget.AppToolbar;
-import com.yufan.library.widget.StateLayout;
 
 import java.util.List;
 
 /**
  * Created by mengfantao on 18/7/2.
  */
-@FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
-@FindRecyclerView( R.id.recyclerview)
+
 @Title("测试标题")
+@FindRecyclerView( R.id.recyclerview)
+@FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
 public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.View{
-    @Find( R.id.et_age)
-    private  TextView et_age;
+    @FindView(R.id.et_age)
+    private  TextView mAge;
 
     /**
      * 初始化title
@@ -53,8 +53,8 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
         tvBatchInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPersenter.batchinsert();
-                mPersenter.onRefresh();
+                getPresenter().batchinsert();
+                getPresenter().onRefresh();
             }
         });
         TextView tvUpdate=  toolbar.creatRightView(TextView.class);
@@ -70,8 +70,8 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
         tvDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPersenter.delete();
-                mPersenter.onRefresh();
+                getPresenter().delete();
+                getPresenter().onRefresh();
 
             }
         });
@@ -109,8 +109,8 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
                             Person person= new Person();
                             person.setAge(Integer.parseInt(etAge.getText().toString()));
                             person.setName(etName.getText().toString());
-                            mPersenter.insert(person);
-                            mPersenter.onRefresh();
+                            getPresenter().insert(person);
+                            getPresenter().onRefresh();
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -138,8 +138,8 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
                        Person person= new Person();
                         person.setAge(age);
                         person.setName(etName.getText().toString());
-                        mPersenter.update(person);
-                        mPersenter.onRefresh();
+                        getPresenter().update(person);
+                        getPresenter().onRefresh();
                     }catch (Exception e){
                         e.printStackTrace();
                     }

@@ -27,11 +27,9 @@ import java.util.List;
  *业务接口
  */
 public interface DbTestContract {
-
     interface View  {
     void setDate( List<Person> persons);
     }
-
     interface Presenter {
 
         void insert(Person person);

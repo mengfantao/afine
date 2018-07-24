@@ -1,8 +1,5 @@
 package com.yufan.library.inject;
 
-import android.support.v4.app.Fragment;
-
-import com.yufan.library.base.BaseFragment;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inter.Vu;
 
@@ -16,7 +13,7 @@ public class AnnotateUtils {
         Field[] fields = object.getDeclaredFields(); // 通过Class获取activity的所有字段
         for (Field field : fields) { // 遍历所有字段
             // 获取字段的注解，如果没有ViewInject注解，则返回null
-            Find viewInject = field.getAnnotation(Find.class);
+            FindView viewInject = field.getAnnotation(FindView.class);
             if (viewInject != null) {
                 int viewId = viewInject.value(); // 获取字段注解的参数，这就是我们传进去控件Id
                 if (viewId != -1) {
