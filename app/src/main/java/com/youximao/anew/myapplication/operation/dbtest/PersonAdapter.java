@@ -8,6 +8,10 @@ import com.yufan.library.base.BaseRecycleAdapter;
 
 import java.util.List;
 
+/**
+ * 列表适配器
+ */
+
 public class PersonAdapter extends BaseRecycleAdapter{
 
         public PersonAdapter(List datas) {

@@ -10,9 +10,6 @@ import android.view.ViewGroup;
 
 import com.yufan.library.inject.AnnotateUtils;
 import com.yufan.library.inter.IListFragment;
-import com.yufan.library.inter.VuCallBack;
-import com.yufan.library.manager.PageManager;
-import com.yufan.library.view.recycler.YFRecyclerView;
 
 /**
  * Created by mengfantao on 18/3/30.
@@ -24,7 +21,9 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 
 public abstract class BaseListFragment <V extends BaseListVu> extends BaseFragment implements IListFragment {
     protected V vu;
-
+    public V getVu() {
+        return vu;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

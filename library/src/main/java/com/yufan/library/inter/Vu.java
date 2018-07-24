@@ -11,12 +11,18 @@ import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
 
-public interface Vu  <T >  {
+public interface Vu<T> {
     void init(LayoutInflater inflater, ViewGroup container);
+
     View getView();
+
     boolean initTitle(AppToolbar appToolbar);
-     boolean initStateLayout(StateLayout stateLayout);
+
+    void initStatusLayout(StateLayout stateLayout);
+
     void initView(View view);
+
     void setPresenter(T presenter);
+
     T getPresenter();
 }

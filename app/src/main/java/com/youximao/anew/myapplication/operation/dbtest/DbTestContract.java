@@ -24,12 +24,12 @@ import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
+ *业务接口
  */
 public interface DbTestContract {
 
     interface View  {
     void setDate( List<Person> persons);
-
     }
 
     interface Presenter extends BasePresenter {

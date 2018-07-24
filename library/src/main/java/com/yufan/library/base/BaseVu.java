@@ -22,34 +22,43 @@ import com.yufan.library.widget.StateLayout;
  * vu view模块基础类,
  */
 
-public abstract class BaseVu <T extends BasePresenter>implements Vu {
+public abstract class BaseVu<T extends BasePresenter> implements Vu {
     private RelativeLayout mRootLayout;
     private View mContentLayout;
     private StateLayout mStateLayout;
     protected AppToolbar mToolbarLayout;
     private Context mContext;
-    protected  T mPersenter;
+    protected T mPersenter;
+
     @Override
-    public  T getPresenter() {
+    public T getPresenter() {
         return mPersenter;
     }
+
     @Override
-    public  void setPresenter(Object presenter) {
-        mPersenter= (T) presenter;
+    public void setPresenter(Object presenter) {
+        mPersenter = (T) presenter;
     }
+
     @Override
     public final View getView() {
         return mRootLayout;
     }
+
     public final Context getContext() {
         return mContext;
     }
+
     @Override
     public final void init(LayoutInflater inflater, ViewGroup container) {
         this.mContext = inflater.getContext();
         mRootLayout = new RelativeLayout(mContext);
         mRootLayout.setId(R.id.root_content_id);
-        mContentLayout = inflater.inflate(AnnotateUtils.getLayoutId(this), container, false);
+        int layoutId = AnnotateUtils.getLayoutId(this);
+        if (layoutId == 0) {
+            throw new IllegalArgumentException("加入类注解 @FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)");
+        }
+        mContentLayout = inflater.inflate(layoutId, container, false);
         mToolbarLayout = new AppToolbar(mContext);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mRootLayout.addView(mContentLayout, layoutParams);
@@ -61,11 +70,20 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
 
     @Override
     public boolean initTitle(AppToolbar appToolbar) {
-        TextView titleName= appToolbar.creatCenterView(TextView.class);
+        TextView titleName = appToolbar.creatCenterView(TextView.class);
         titleName.setText(AnnotateUtils.getTitle(this));
+        appToolbar.build();
         return true;
     }
-
+    @Override
+    public void initStatusLayout(StateLayout stateLayout) {
+        stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPersenter.onRefresh();
+            }
+        });
+    }
     /**
      * 添加头
      */
@@ -92,10 +110,10 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
      * 初始化状态view
      */
     private final void initState() {
-        mStateLayout=    new StateLayout(this);
-        initStateLayout(mStateLayout);
-      int stateParentId=  AnnotateUtils.getStateParentId(this);
-        if (mStateLayout != null && stateParentId != 0) {
+        mStateLayout = new StateLayout(this);
+        initStatusLayout(mStateLayout);
+        int stateParentId = AnnotateUtils.getStateParentId(this);
+        if (stateParentId != 0) {
             ViewGroup stateViewGroup = mRootLayout.findViewById(stateParentId);
             if (stateViewGroup != null) {
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -104,15 +122,19 @@ public abstract class BaseVu <T extends BasePresenter>implements Vu {
             }
         }
     }
+
     public final void setStateGone() {
         mStateLayout.setVisibility(View.GONE);
     }
+
     public final void setStateError() {
         mStateLayout.setStateError();
     }
+
     public final void setStateEmpty() {
         mStateLayout.setStateEmpty();
     }
+
     public final View findViewById(@IdRes int id) {
         return getView().findViewById(id);
     }

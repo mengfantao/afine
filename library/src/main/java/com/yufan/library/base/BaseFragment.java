@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yufan.library.inject.AnnotateUtils;
-import com.yufan.library.inter.IFragment;
-import com.yufan.library.inter.VuCallBack;
 
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
@@ -24,6 +22,11 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 public abstract class BaseFragment<V extends BaseVu> extends SupportFragment implements BasePresenter {
     protected V vu;
+
+    public V getVu() {
+        return vu;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

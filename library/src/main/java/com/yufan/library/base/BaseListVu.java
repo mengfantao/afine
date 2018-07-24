@@ -25,6 +25,9 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
     @Override
     public void initView(View view) {
         int recyclerviewId=AnnotateUtils.getRecyclerView(this);
+        if(recyclerviewId==0){
+            throw new IllegalArgumentException("加入类注解 @FindRecyclerView( R.id.recyclerview)") ;
+        }
         mYFRecyclerView= (YFRecyclerView) findViewById(recyclerviewId);
         initRecyclerview(mYFRecyclerView);
     }

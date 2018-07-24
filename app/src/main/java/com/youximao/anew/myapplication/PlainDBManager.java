@@ -20,17 +20,14 @@ public class PlainDBManager {
        mDBHelper = new PlainDBHelper(context,"youximao".getBytes());
          mDB = mDBHelper.getWritableDatabase();
     }
-
     public void addPersonData(Person person) {
         try {
             // 开启事务
             mDB.beginTransaction();
-
             // 执行插入语句
             final String sql = "INSERT INTO person VALUES(NULL,?,?)";
             Object[] objects = new Object[]{person.getName(), person.getAge()};
             mDB.execSQL(sql, objects);
-
             // 设置事务完成成功
             mDB.setTransactionSuccessful();
         } finally {

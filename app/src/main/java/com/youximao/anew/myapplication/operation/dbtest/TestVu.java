@@ -27,26 +27,19 @@ import java.util.List;
  */
 @FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
 @FindRecyclerView( R.id.recyclerview)
-@Title("测试数据库查询")
+@Title("测试标题")
 public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
     @Find( R.id.et_age)
     private  TextView et_age;
 
-    @Override
-    public boolean initStateLayout(StateLayout stateLayout) {
-        stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               mPersenter.onRefresh();
-            }
-        });
-        return true;
-    }
-
+    /**
+     * 初始化title
+     * @param toolbar
+     * @return
+     */
     @Override
     public boolean initTitle(AppToolbar toolbar) {
         super.initTitle(toolbar);
-        toolbar.creatCenterView(TextView.class).setText("WCDB数据库");
       TextView tvInsert=  toolbar.creatRightView(TextView.class);
         tvInsert.setText("插入");
         tvInsert.setOnClickListener(new View.OnClickListener() {
@@ -82,18 +75,27 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
 
             }
         });
-        TextView tvQuery=  toolbar.creatRightView(TextView.class);
-        tvQuery.setText("查询");
-        tvQuery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPersenter.onRefresh();
-            }
-        });
         toolbar.build();
         return true;
     }
 
+    /**
+     * vu 接口
+     * @param persons
+     */
+    @Override
+    public void setDate(List<Person> persons) {
+        getRecyclerView().getList().clear();
+        getRecyclerView().getList().addAll(persons);
+        getRecyclerView().getAdapter().notifyDataSetChanged();
+        getRecyclerView().getPTR().refreshComplete();
+        getRecyclerView().getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
+
+    }
+
+    /**
+     * dialog
+     */
     private void showInsertDialog(){
         ViewGroup extViewmoney = (ViewGroup) LayoutInflater.from(getContext()).inflate(R.layout.alertext_form, null);
         final EditText etName = (EditText) extViewmoney.findViewById(R.id.et_name);
@@ -150,14 +152,6 @@ public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbT
     }
 
 
-    @Override
-    public void setDate(List<Person> persons) {
-       getRecyclerView().getList().clear();
-        getRecyclerView().getList().addAll(persons);
-        getRecyclerView().getAdapter().notifyDataSetChanged();
-        getRecyclerView().getPTR().refreshComplete();
-        getRecyclerView().getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
-    }
 
 
 

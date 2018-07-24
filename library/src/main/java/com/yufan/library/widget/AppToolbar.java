@@ -87,11 +87,11 @@ public class AppToolbar extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int measuredWidthLeft = toptitle_left.getMeasuredWidth();
-        int measuredWidthRight = toptitle_right.getMeasuredWidth();
-        int max = Math.max(measuredWidthLeft, measuredWidthRight);
-        toptitle_left.getLayoutParams().width=max;
-        toptitle_right.getLayoutParams().width=max;
+//        int measuredWidthLeft = toptitle_left.getMeasuredWidth();
+//        int measuredWidthRight = toptitle_right.getMeasuredWidth();
+//        int max = Math.max(measuredWidthLeft, measuredWidthRight);
+//        toptitle_left.getLayoutParams().width=max;
+//        toptitle_right.getLayoutParams().width=max;
     }
 
 
