@@ -32,7 +32,7 @@ public interface DbTestContract {
     void setDate( List<Person> persons);
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
 
         void insert(Person person);
 

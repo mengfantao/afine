@@ -28,7 +28,7 @@ import java.util.List;
 @FindLayout(layout = R.layout.layout_fragment_list,statusLayoutParent = R.id.rl_content)
 @FindRecyclerView( R.id.recyclerview)
 @Title("测试标题")
-public class TestVu extends BaseListVu <DbTestContract.Presenter> implements DbTestContract.View{
+public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.View{
     @Find( R.id.et_age)
     private  TextView et_age;
 
