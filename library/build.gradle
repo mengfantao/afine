@@ -10,7 +10,13 @@ android {
         versionName "1.0"
         buildToolsVersion "25"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{abiFilters "armeabi"}
+    }
+    sourceSets {
 
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
     buildTypes {
         release {

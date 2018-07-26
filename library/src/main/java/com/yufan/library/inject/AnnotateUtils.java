@@ -1,5 +1,10 @@
 package com.yufan.library.inject;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.text.TextUtils;
+import android.view.TextureView;
+
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inter.Vu;
 
@@ -41,18 +46,27 @@ public class AnnotateUtils {
         Class<? extends Vu> object = vu.getClass(); // 获取activity的Class
         FindLayout viewInject = object.getAnnotation(FindLayout.class);
         int value=  viewInject.layout();
+        if(value==0){
+            value= getResId(viewInject.layoutName(),"layout",vu.getContext());
+        }
        return value;
     }
     public static int getStateParentId(BaseVu vu){
         Class<? extends Vu>  object = vu.getClass(); // 获取activity的Class
         FindLayout viewInject = object.getAnnotation(FindLayout.class);
         int value=  viewInject.statusLayoutParent();
+        if(value==0){
+            value=  getResId(viewInject.statusLayoutParentName(),"id",vu.getContext());
+        }
         return value;
     }
     public static int getRecyclerView(BaseVu vu){
         Class<? extends Vu> object = vu.getClass(); // 获取activity的Class
         FindRecyclerView viewInject = object.getAnnotation(FindRecyclerView.class);
         int value=  viewInject.value();
+        if(value==0){
+            value= getResId(viewInject.recyclerViewName(),"id",vu.getContext());
+        }
         return value;
     }
     public static Class getVu( Object vu){
@@ -65,4 +79,13 @@ public class AnnotateUtils {
         Title viewInject = object.getAnnotation(Title.class);
         return viewInject.value();
     }
+    public static int getResId(String name,String type,Context context){
+        if(TextUtils.isEmpty(name)){
+            return 0;
+        }
+        Resources r=context.getResources();
+        int id = r.getIdentifier(name,type,context.getPackageName());
+        return id;
+    }
+
 }
