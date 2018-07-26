@@ -2,6 +2,7 @@ package com.yufan.library.browser;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,11 +33,11 @@ import com.yufan.library.dialog.CommonDialogAdapter;
 import com.yufan.library.filter.GifSizeFilter;
 import com.yufan.library.inject.VuClass;
 import com.yufan.library.util.SoftInputUtil;
+import com.yufan.library.view.ptr.PtrDefaultHandler;
 import com.yufan.library.view.ptr.PtrFrameLayout;
 import com.yufan.library.view.ptr.PtrHandler;
 import com.yufan.library.webview.WVJBWebViewClient;
 import com.yufan.library.widget.BottomMenu;
-import com.yufan.library.widget.ScrollWebView;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -54,7 +55,6 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
     private String TAG = "BrowserActivity";
     private ValueCallback<Uri> uploadFile;
     private String mIntentUrl;
-    private boolean isTop;
     private int REQUEST_CODE_CHOOSE=8;
 
 
@@ -72,19 +72,8 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
 
         return new BrowserWebViewClient(vu.getWebView());
     }
-    private void init(ScrollWebView webView) {
-
+    private void init(final WebView webView) {
         webView.setWebViewClient(getWebViewClient());
-        webView.setOnScrollChangeListener(new ScrollWebView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChanged(int l, int t, int oldl, int oldt) {
-                if (l <= 10 && t <= 10 && oldl <= 10) {
-                    isTop = true;
-                } else {
-                    isTop = false;
-                }
-            }
-        });
         vu.getPtr().setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -92,10 +81,9 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
                     vu.getWebView().reload();
                 }
             }
-
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return isTop && isPtrEnable();
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, webView.getView(), header)&& isPtrEnable();
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
@@ -391,8 +379,15 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
         }
 
         @Override
+        public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+            super.onPageStarted(webView, s, bitmap);
+            isError=false;
+        }
+
+        @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            Log.d("browser","onPageFinished");
             if(isError){
                 vu.setStateError();
             }else {
@@ -413,6 +408,7 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
             isError=true;
+            Log.d("browser","onReceivedError");
           vu.onReceivedError(view,errorCode,description,failingUrl);
         }
 

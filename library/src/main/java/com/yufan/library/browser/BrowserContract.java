@@ -24,7 +24,6 @@ import com.tencent.smtt.sdk.WebView;
 import com.yufan.library.base.BasePresenter;
 import com.yufan.library.inter.Vu;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
-import com.yufan.library.widget.ScrollWebView;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ import java.util.List;
  */
 public interface BrowserContract {
     interface View  extends Vu{
-        ScrollWebView getWebView();
+        WebView getWebView();
         void onProgressChanged(WebView webView, int i);
         void onShowCustomView(android.view.View view, IX5WebChromeClient.CustomViewCallback customViewCallback);
         void onHideCustomView();

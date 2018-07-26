@@ -15,7 +15,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         BaseBrowserFragment fragment=  new BaseBrowserFragment();
         Bundle bundle=new Bundle();
-        bundle.putString(Global.BUNDLE_KEY_BROWSER_URL,"https://mta.qq.com/mta/custom/ctr_event_conf?app_id=1");
+        bundle.putString(Global.BUNDLE_KEY_BROWSER_URL,"http://www.baidu.com");
         fragment.setArguments(bundle);
         loadRootFragment(R.id.rl_fragment,fragment);
     }

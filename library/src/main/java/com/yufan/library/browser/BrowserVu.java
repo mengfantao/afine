@@ -16,7 +16,6 @@ import com.yufan.library.base.BaseVu;
 import com.yufan.library.inject.FindLayout;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
 import com.yufan.library.widget.AppToolbar;
-import com.yufan.library.widget.ScrollWebView;
 import com.yufan.library.widget.StateLayout;
 
 /**
@@ -28,7 +27,7 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
     private ViewGroup mViewParent;
     private PtrClassicFrameLayout mPtrClassicFrameLayout;
     private ProgressBar mPageLoadingProgressBar;
-    private ScrollWebView mWebView;
+    private WebView mWebView;
     private View myVideoView;
     private View myNormalView;
 
@@ -43,7 +42,7 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
         if(!mPersenter.isPtrEnable()){
             mPtrClassicFrameLayout.setPullToRefresh(false);
         }
-        mWebView = new ScrollWebView(getContext(), null);
+        mWebView = new WebView(getContext(), null);
         mViewParent.addView(mWebView, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.FILL_PARENT,
                 FrameLayout.LayoutParams.FILL_PARENT));
@@ -81,7 +80,7 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
     }
 
     @Override
-    public ScrollWebView getWebView() {
+    public WebView getWebView() {
         return mWebView;
     }
 
@@ -125,7 +124,7 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
 
     @Override
     public void onPageFinished(WebView view, String url) {
-        Log.d("browser","onPageFinished");
+
         if(mPtrClassicFrameLayout!=null){
             mPtrClassicFrameLayout.refreshComplete();
         }
