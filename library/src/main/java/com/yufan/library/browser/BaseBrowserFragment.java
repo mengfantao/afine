@@ -3,6 +3,7 @@ package com.yufan.library.browser;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomView
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
+import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -40,9 +42,6 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
-
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +50,7 @@ import java.util.List;
  * Created by mengfantao on 18/7/26.
  */
 @VuClass(BrowserVu.class)
-public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements BrowserContract.Presenter {
+public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> implements BrowserContract.Presenter {
     private String TAG = "BrowserActivity";
     private ValueCallback<Uri> uploadFile;
     private String mIntentUrl;
@@ -73,11 +72,6 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
 
         return new BrowserWebViewClient(vu.getWebView());
     }
-
-    public boolean ptrEnable() {
-        return false;
-    }
-
     private void init(ScrollWebView webView) {
 
         webView.setWebViewClient(getWebViewClient());
@@ -101,7 +95,7 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
 
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return isTop && ptrEnable();
+                return isTop && isPtrEnable();
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
@@ -232,13 +226,31 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
         if (mIntentUrl == null) {
             throw new IllegalArgumentException("intent data can not null");
         } else {
+            Log.d("browser","load:"+mIntentUrl);
             webView.loadUrl(mIntentUrl);
         }
         TbsLog.d("time-cost", "cost time: "
                 + (System.currentTimeMillis() - time));
-        CookieSyncManager.createInstance(getContext());
+       loadCookie(CookieManager.getInstance());
+    }
+    protected void loadCookie(CookieManager cookie) {
+        CookieSyncManager.createInstance(getActivity());
+        cookie.setAcceptCookie(true);
+        cookie.removeSessionCookie();// 移除旧的[可以省略]
+        cookie.setCookie(mIntentUrl, "token=" +  "");
+        cookie.setCookie(mIntentUrl, "channelId=" + "");
+        cookie.setCookie(mIntentUrl, "type=2");
+        cookie.setCookie(mIntentUrl, "sid=" + "");
+        cookie.setCookie(mIntentUrl, "uniqueId=" +"");
+        cookie.setCookie(mIntentUrl, "apiVersion=" + "");
+        cookie.setCookie(mIntentUrl, "hardware=" + "");
+        cookie.setCookie(mIntentUrl, "cpu=" + "");
+        cookie.setCookie(mIntentUrl, "cpu_abi=" + Build.CPU_ABI);
+        cookie.setCookie(mIntentUrl, "product_cpu_abi=" + "");
         CookieSyncManager.getInstance().sync();
     }
+
+
 
     @Override
     public boolean onBackPressedSupport() {
@@ -344,8 +356,14 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
 
     }
 
+    @Override
+    public boolean isPtrEnable() {
+        return true;
+    }
+
 
     class BrowserWebViewClient extends WVJBWebViewClient {
+        private boolean isError = false;
         /**
          * @param webView
          */
@@ -375,14 +393,15 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            if(isError){
+                vu.setStateError();
+            }else {
+                vu.setStateGone();
+            }
             vu.onPageFinished(view, url);
         }
-
-
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-
             handler.proceed();  // 接受所有网站的证书
-
         }
 
         @Override
@@ -390,13 +409,12 @@ public class BaseBrowserFragment extends BaseFragment<BrowserVu> implements Brow
 
             return super.shouldOverrideUrlLoading(view, url);
         }
-
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
+            isError=true;
           vu.onReceivedError(view,errorCode,description,failingUrl);
         }
-
 
     }
 

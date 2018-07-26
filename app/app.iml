@@ -91,6 +91,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/multi-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
@@ -104,8 +105,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.android.support:multidex-1.0.1" level="project" />
+    <orderEntry type="library" name="com.android.support:multidex-1.0.2" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-27.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.android.support:multidex-1.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:design-27.1.0" level="project" />
     <orderEntry type="library" name="com.squareup.okio:okio:1.8.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:transition-27.1.0" level="project" />
@@ -137,6 +139,7 @@
     <orderEntry type="library" name="com.tencent.wcdb:wcdb-android-1.0.2" level="project" />
     <orderEntry type="library" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="net.sf.kxml:kxml2:2.3.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.2" level="project" />
     <orderEntry type="library" name="com.zhihu.android:matisse-0.4.3" level="project" />
     <orderEntry type="library" name="com.hedgehog.ratingbar:app-1.1.2" level="project" />
     <orderEntry type="library" name="__local_aars__:/Users/mengfantao/yutuo/afine/library/libs/libammsdk.jar:unspecified@jar" level="project" />

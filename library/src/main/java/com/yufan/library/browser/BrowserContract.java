@@ -21,6 +21,8 @@ import android.view.View;
 
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
+import com.yufan.library.base.BasePresenter;
+import com.yufan.library.inter.Vu;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
 import com.yufan.library.widget.ScrollWebView;
 
@@ -31,7 +33,7 @@ import java.util.List;
  *业务接口
  */
 public interface BrowserContract {
-    interface View  {
+    interface View  extends Vu{
         ScrollWebView getWebView();
         void onProgressChanged(WebView webView, int i);
         void onShowCustomView(android.view.View view, IX5WebChromeClient.CustomViewCallback customViewCallback);
@@ -42,7 +44,8 @@ public interface BrowserContract {
       void   onReceivedError(WebView view, int errorCode, String description, String failingUrl);
     }
 
-    interface Presenter {
+    interface Presenter extends BasePresenter{
         void onBackPressed();
+       boolean isPtrEnable();
     }
 }

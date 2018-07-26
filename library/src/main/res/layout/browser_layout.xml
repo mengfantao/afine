@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:id="@+id/rl_status"
         android:orientation="vertical" >
-        <com.youximao.app.widget.ptr.PtrClassicFrameLayout
+        <com.yufan.library.view.ptr.PtrClassicFrameLayout
             android:id="@+id/webviewprt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
         </FrameLayout>
-        </com.youximao.app.widget.ptr.PtrClassicFrameLayout>
+        </com.yufan.library.view.ptr.PtrClassicFrameLayout>
 
     </RelativeLayout>
 

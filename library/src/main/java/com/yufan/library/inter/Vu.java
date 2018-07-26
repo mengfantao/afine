@@ -25,4 +25,7 @@ public interface Vu<T> {
     void setPresenter(T presenter);
 
     T getPresenter();
+    void setStateGone();
+    void setStateError();
+    void setStateEmpty();
 }

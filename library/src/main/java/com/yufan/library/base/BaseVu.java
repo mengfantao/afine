@@ -48,6 +48,7 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
         return mContext;
     }
 
+
     @Override
     public final void init(LayoutInflater inflater, ViewGroup container) {
         this.mContext = inflater.getContext();
@@ -64,7 +65,6 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
         addTitle(mToolbarLayout, initTitle(mToolbarLayout));
         initState();
         AnnotateUtils.injectViews(this);
-        initView(mContentLayout);
     }
 
     @Override
@@ -79,6 +79,12 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
         stateLayout.getEmptyView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mPersenter.onRefresh();
+            }
+        });
+        stateLayout.getErrorView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 mPersenter.onRefresh();
             }
         });
@@ -119,6 +125,7 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
                 layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
                 stateViewGroup.addView(mStateLayout, layoutParams);
             }
+            mStateLayout.setVisibility(View.GONE);
         }
     }
 

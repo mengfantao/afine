@@ -1,6 +1,7 @@
 package com.yufan.library.browser;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,12 +17,13 @@ import com.yufan.library.inject.FindLayout;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.ScrollWebView;
+import com.yufan.library.widget.StateLayout;
 
 /**
  * Created by mengfantao on 18/7/26.
  */
 @FindLayout(layoutName = "browser_layout", statusLayoutParentName = "rl_status")
-public class BrowserVu extends BaseVu<BaseBrowserFragment>  implements BrowserContract.View{
+public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements BrowserContract.View{
   private   TextView titleView;//标题
     private ViewGroup mViewParent;
     private PtrClassicFrameLayout mPtrClassicFrameLayout;
@@ -29,6 +31,7 @@ public class BrowserVu extends BaseVu<BaseBrowserFragment>  implements BrowserCo
     private ScrollWebView mWebView;
     private View myVideoView;
     private View myNormalView;
+
     @Override
     public void initView(View view) {
         mViewParent = (ViewGroup) view.findViewById(R.id.webview);
@@ -37,7 +40,7 @@ public class BrowserVu extends BaseVu<BaseBrowserFragment>  implements BrowserCo
         mPageLoadingProgressBar.setMax(100);
         mPageLoadingProgressBar.setProgressDrawable(getContext().getResources()
                 .getDrawable(R.drawable.color_progressbar));
-        if(!mPersenter.ptrEnable()){
+        if(!mPersenter.isPtrEnable()){
             mPtrClassicFrameLayout.setPullToRefresh(false);
         }
         mWebView = new ScrollWebView(getContext(), null);
@@ -47,6 +50,10 @@ public class BrowserVu extends BaseVu<BaseBrowserFragment>  implements BrowserCo
     }
 
 
+    @Override
+    public void initStatusLayout(StateLayout stateLayout) {
+        super.initStatusLayout(stateLayout);
+    }
 
     @Override
     public boolean initTitle(AppToolbar appToolbar) {
@@ -115,13 +122,15 @@ public class BrowserVu extends BaseVu<BaseBrowserFragment>  implements BrowserCo
         }
     }
 
+
     @Override
     public void onPageFinished(WebView view, String url) {
+        Log.d("browser","onPageFinished");
         if(mPtrClassicFrameLayout!=null){
             mPtrClassicFrameLayout.refreshComplete();
         }
         mPageLoadingProgressBar.setVisibility(View.GONE);
-        setStateGone();
+
     }
 
     @Override

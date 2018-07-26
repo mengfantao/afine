@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yufan.library.inject.AnnotateUtils;
+import com.yufan.library.inter.Vu;
 
 /**
  * Created by mengfantao on 18/3/30.
@@ -18,7 +19,7 @@ import com.yufan.library.inject.AnnotateUtils;
  *
  */
 
-public abstract class BaseListFragment <V extends BaseListVu> extends BaseFragment  {
+public abstract class BaseListFragment <V extends Vu> extends BaseFragment  {
     protected V vu;
     public V getVu() {
         return vu;
