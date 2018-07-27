@@ -28,7 +28,7 @@ import java.util.List;
  */
 public interface DbTestContract {
     interface View  {
-    void setDate( List<Person> persons);
+    void setData( List<Person> persons);
     }
     interface Presenter {
 

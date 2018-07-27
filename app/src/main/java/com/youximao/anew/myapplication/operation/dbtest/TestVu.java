@@ -84,7 +84,7 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
      * @param persons
      */
     @Override
-    public void setDate(List<Person> persons) {
+    public void setData(List<Person> persons) {
         getRecyclerView().getList().clear();
         getRecyclerView().getList().addAll(persons);
         getRecyclerView().getAdapter().notifyDataSetChanged();

@@ -55,7 +55,7 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
     private String TAG = "BrowserActivity";
     private ValueCallback<Uri> uploadFile;
     private String mIntentUrl;
-    private int REQUEST_CODE_CHOOSE=8;
+//    private int REQUEST_CODE_CHOOSE=8;
 
 
     @Override
@@ -278,46 +278,46 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
         }
 
     }
-
-    private void upPhoto() {
-        // 修改头像
-        List<String> nameList = new ArrayList<>();
-        nameList.add( "选择照片");
-        final BottomMenu dialog = new BottomMenu(getActivity());
-        dialog.setAdapter(new CommonDialogAdapter(nameList, new BaseRecycleAdapter.ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int postion) {
-                switch (postion) {
-                    case 0:
-                        Matisse.from(BaseBrowserFragment.this)
-                                .choose(MimeType.allOf())
-                                .countable(true)
-                                .maxSelectable(1)
-                                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                                .thumbnailScale(0.8f)
-                                .captureStrategy(//参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
-                                        new CaptureStrategy(true, "com.youximao.anew.myapplication.fileprovider"))
-                                .imageEngine(new GlideEngine())
-                                .forResult(REQUEST_CODE_CHOOSE);
-                        break;
-                    case 1:
-
-                        break;
-                    case -1:
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public boolean onItemLongClick(View view, int postion) {
-                return false;
-            }
-        }));
-        dialog.show();
-    }
+//
+//    private void upPhoto() {
+//        // 修改头像
+//        List<String> nameList = new ArrayList<>();
+//        nameList.add( "选择照片");
+//        final BottomMenu dialog = new BottomMenu(getActivity());
+//        dialog.setAdapter(new CommonDialogAdapter(nameList, new BaseRecycleAdapter.ItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int postion) {
+//                switch (postion) {
+//                    case 0:
+//                        Matisse.from(BaseBrowserFragment.this)
+//                                .choose(MimeType.allOf())
+//                                .countable(true)
+//                                .maxSelectable(1)
+//                                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+//                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+//                                .thumbnailScale(0.8f)
+//                                .captureStrategy(//参数1 true表示拍照存储在共有目录，false表示存储在私有目录；参数2与 AndroidManifest中authorities值相同，用于适配7.0系统 必须设置
+//                                        new CaptureStrategy(true, "com.youximao.anew.myapplication.fileprovider"))
+//                                .imageEngine(new GlideEngine())
+//                                .forResult(REQUEST_CODE_CHOOSE);
+//                        break;
+//                    case 1:
+//
+//                        break;
+//                    case -1:
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public boolean onItemLongClick(View view, int postion) {
+//                return false;
+//            }
+//        }));
+//        dialog.show();
+//    }
 
 
     @Override
