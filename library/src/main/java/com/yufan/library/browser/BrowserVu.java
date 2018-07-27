@@ -14,6 +14,7 @@ import com.tencent.smtt.sdk.WebView;
 import com.yufan.library.R;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inject.FindLayout;
+import com.yufan.library.inject.FindView;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
