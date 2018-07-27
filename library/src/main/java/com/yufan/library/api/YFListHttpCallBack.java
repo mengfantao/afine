@@ -2,8 +2,7 @@ package com.yufan.library.api;
 
 import com.yufan.library.base.BaseListVu;
 import com.yufan.library.manager.DialogManager;
-import com.yufan.library.manager.PageManager;
-import com.yufan.library.view.recycler.YFRecyclerView;
+import com.yufan.library.view.recycler.PageInfo;
 
 import java.util.List;
 
@@ -13,18 +12,18 @@ import java.util.List;
 
 public abstract class YFListHttpCallBack extends BaseHttpCallBack {
 
-    private PageManager  pageManager;
+    private PageInfo pageInfo;
     private BaseListVu vu;
     public abstract void onEmpty();
     public abstract List onListSuccess(ApiBean mApiBean);
     public YFListHttpCallBack(BaseListVu vu) {
-        this.pageManager = vu.getRecyclerView().getPageManager();
+        this.pageInfo = vu.getRecyclerView().getPageManager();
         this.vu=vu;
     }
 
     private void setData(List listSource,List subList){
         if(subList!=null&&subList.size()>0){
-            if(pageManager.getCurrentIndex()==0){
+            if(pageInfo.getCurrentIndex()==0){
                 listSource.clear();
                 listSource.addAll(subList);
             }else{
@@ -36,14 +35,14 @@ public abstract class YFListHttpCallBack extends BaseHttpCallBack {
 
     @Override
     public void onSuccess(ApiBean mApiBean) {
-        setData(pageManager.getList(),onListSuccess(mApiBean));
-        if(pageManager.getList().size()==0){
+        setData(pageInfo.getList(),onListSuccess(mApiBean));
+        if(pageInfo.getList().size()==0){
             onEmpty();
             vu.setStateEmpty();
         }else {
             vu.setStateGone();
         }
-        pageManager.setPageState(PageManager.PAGE_STATE_NONE);
+        pageInfo.setPageState(PageInfo.PAGE_STATE_NONE);
         vu.getRecyclerView().getAdapter().notifyDataSetChanged();
         onFinish();
     }
@@ -51,7 +50,7 @@ public abstract class YFListHttpCallBack extends BaseHttpCallBack {
     @Override
     public void onError(int id, Exception e) {
         vu.setStateError();
-        pageManager.setPageState(PageManager.PAGE_STATE_ERROR);
+        pageInfo.setPageState(PageInfo.PAGE_STATE_ERROR);
         DialogManager.getInstance().toast(e.getMessage());
         onFinish();
     }

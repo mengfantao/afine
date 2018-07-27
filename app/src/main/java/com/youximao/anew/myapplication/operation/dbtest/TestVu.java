@@ -16,7 +16,7 @@ import com.yufan.library.inject.FindView;
 import com.yufan.library.inject.FindLayout;
 import com.yufan.library.inject.FindRecyclerView;
 import com.yufan.library.inject.Title;
-import com.yufan.library.manager.PageManager;
+import com.yufan.library.view.recycler.PageInfo;
 import com.yufan.library.widget.AppToolbar;
 
 import java.util.List;
@@ -89,7 +89,7 @@ public class TestVu extends BaseListVu <TestFragment> implements DbTestContract.
         getRecyclerView().getList().addAll(persons);
         getRecyclerView().getAdapter().notifyDataSetChanged();
         getRecyclerView().getPTR().refreshComplete();
-        getRecyclerView().getPageManager().setPageState(PageManager.PAGE_STATE_NONE);
+        getRecyclerView().getPageManager().setPageState(PageInfo.PAGE_STATE_NONE);
 
     }
 

@@ -41,7 +41,7 @@ public class TestFragment extends BaseListFragment<TestVu> implements DbTestCont
                 .subscribe(new Consumer<List<Person>>() {
                     @Override
                     public void accept(@NonNull List<Person> persons) throws Exception {
-                        getVu().setDate(persons);
+                        getVu().setData(persons);
                     }
                 });
     }

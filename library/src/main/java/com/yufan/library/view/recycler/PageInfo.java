@@ -1,4 +1,4 @@
-package com.yufan.library.manager;
+package com.yufan.library.view.recycler;
 
 
 import com.yufan.library.inter.ICallBack;
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by mengfantao on 17/4/7.
  */
 
-public class PageManager {
+public class PageInfo {
     //页面请求网络状态
     public static final int PAGE_STATE_NONE=0;//加载更多，空闲状态
     public static final int PAGE_STATE_LOADING=1;//加载中
@@ -26,7 +26,7 @@ public class PageManager {
         this.callBack = callBack;
     }
 
-    public PageManager() {
+    public PageInfo() {
 
 
     }

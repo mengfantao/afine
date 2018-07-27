@@ -1,10 +1,9 @@
 package com.yufan.library.base;
 
-import android.support.annotation.IdRes;
 import android.view.View;
 
 import com.yufan.library.inject.AnnotateUtils;
-import com.yufan.library.manager.PageManager;
+import com.yufan.library.view.recycler.PageInfo;
 import com.yufan.library.view.recycler.YFRecyclerView;
 
 /**
@@ -42,7 +41,7 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
             @Override
             public void onLoadMore(int index) {
                 if (recyclerViewModel.getPageManager().isIdle()) {
-                    recyclerViewModel.getPageManager().setPageState(PageManager.PAGE_STATE_LOADING);
+                    recyclerViewModel.getPageManager().setPageState(PageInfo.PAGE_STATE_LOADING);
                    mPersenter.onLoadMore(index);
                 }
             }
@@ -50,7 +49,7 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
             public void onRefresh() {
                 if (recyclerViewModel.getPageManager().isIdle()) {
                     recyclerViewModel.getPageManager().resetIndex();
-                    recyclerViewModel.getPageManager().setPageState(PageManager.PAGE_STATE_LOADING);
+                    recyclerViewModel.getPageManager().setPageState(PageInfo.PAGE_STATE_LOADING);
                     mPersenter.onRefresh();
                 }
             }

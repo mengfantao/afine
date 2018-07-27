@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.yufan.library.R;
 import com.yufan.library.inter.EndlessRecyclerOnScrollListener;
-import com.yufan.library.manager.LoadMoreManager;
-import com.yufan.library.manager.PageManager;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
 import com.yufan.library.view.ptr.PtrDefaultHandler;
 import com.yufan.library.view.ptr.PtrFrameLayout;
@@ -26,8 +24,8 @@ import java.util.List;
 
 public class YFRecyclerView extends WrapRecyclerView {
     private  boolean needLoadMore;
-    protected LoadMoreManager mLoadMoreManager;
-    protected PageManager mPageManager;
+    protected LoadMoreModule mLoadMoreModule;
+    protected PageInfo mPageInfo;
     protected OnPagerListener mOnPagerListener;
     private OnVerticalOffsetChange onVerticalOffsetChange;
 
@@ -41,12 +39,12 @@ public class YFRecyclerView extends WrapRecyclerView {
         this.mOnPagerListener = mOnPagerListener;
     }
 
-    public PageManager getPageManager() {
-        return mPageManager;
+    public PageInfo getPageManager() {
+        return mPageInfo;
     }
 
-    public LoadMoreManager getmLoadMoreManager() {
-        return mLoadMoreManager;
+    public LoadMoreModule getmLoadMoreModule() {
+        return mLoadMoreModule;
     }
 
     public YFRecyclerView(Context context) {
@@ -66,7 +64,7 @@ public class YFRecyclerView extends WrapRecyclerView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mPageManager = new PageManager();
+        mPageInfo = new PageInfo();
         initRecyclerview();
 
     }
@@ -112,27 +110,27 @@ public class YFRecyclerView extends WrapRecyclerView {
      */
     protected final void initLoadMore() {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mLoadMoreManager = new LoadMoreManager(getContext(), mPageManager);
-        mLoadMoreManager.getFootView().setLayoutParams(params);
-        addFootView(mLoadMoreManager.getFootView());
-        mLoadMoreManager.getFootView().setVisibility(View.GONE);
+        mLoadMoreModule = new LoadMoreModule(getContext(), mPageInfo);
+        mLoadMoreModule.getFootView().setLayoutParams(params);
+        addFootView(mLoadMoreModule.getFootView());
+        mLoadMoreModule.getFootView().setVisibility(View.GONE);
         addOnScrollListener(listener);
 
     }
    private EndlessRecyclerOnScrollListener listener= new EndlessRecyclerOnScrollListener() {
         @Override
         public void onHalf(View view) {
-            mLoadMoreManager.getFootView().setVisibility(View.GONE);
+            mLoadMoreModule.getFootView().setVisibility(View.GONE);
         }
 
         @Override
         public void onLoadNextPage(View view) {
-            mLoadMoreManager.getFootView().setVisibility(View.VISIBLE);
-            if(mPageManager.getmState()==PageManager.PAGE_STATE_ERROR){
-                mOnPagerListener.onLoadMore(mPageManager.getCurrentIndex());
-            }else if(mPageManager.getmState()==PageManager.PAGE_STATE_NONE){
-                mPageManager.next();
-                mOnPagerListener.onLoadMore(mPageManager.getCurrentIndex());
+            mLoadMoreModule.getFootView().setVisibility(View.VISIBLE);
+            if(mPageInfo.getmState()== PageInfo.PAGE_STATE_ERROR){
+                mOnPagerListener.onLoadMore(mPageInfo.getCurrentIndex());
+            }else if(mPageInfo.getmState()== PageInfo.PAGE_STATE_NONE){
+                mPageInfo.next();
+                mOnPagerListener.onLoadMore(mPageInfo.getCurrentIndex());
             }
 
         }
@@ -147,8 +145,8 @@ public class YFRecyclerView extends WrapRecyclerView {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 //处理刷新逻辑
-                if (mPageManager.isIdle()) {
-                    mPageManager.resetIndex();
+                if (mPageInfo.isIdle()) {
+                    mPageInfo.resetIndex();
                     mOnPagerListener.onRefresh();
                 }
 
@@ -169,7 +167,7 @@ public class YFRecyclerView extends WrapRecyclerView {
     }
 
     public List getList(){
-      return   mPageManager.getList();
+      return   mPageInfo.getList();
     }
     public interface OnPagerListener {
         void onLoadMore(int index);
