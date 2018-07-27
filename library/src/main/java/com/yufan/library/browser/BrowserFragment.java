@@ -1,7 +1,6 @@
 package com.yufan.library.browser;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -11,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.export.external.interfaces.SslError;
@@ -27,37 +25,24 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.smtt.utils.TbsLog;
 import com.yufan.library.Global;
-import com.yufan.library.base.BaseFragment;
-import com.yufan.library.base.BaseRecycleAdapter;
-import com.yufan.library.dialog.CommonDialogAdapter;
-import com.yufan.library.filter.GifSizeFilter;
+import com.yufan.library.base.Fragment;
 import com.yufan.library.inject.VuClass;
 import com.yufan.library.util.SoftInputUtil;
 import com.yufan.library.view.ptr.PtrDefaultHandler;
 import com.yufan.library.view.ptr.PtrFrameLayout;
 import com.yufan.library.view.ptr.PtrHandler;
 import com.yufan.library.webview.WVJBWebViewClient;
-import com.yufan.library.widget.BottomMenu;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.filter.Filter;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Created by mengfantao on 18/7/26.
  */
 @VuClass(BrowserVu.class)
-public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> implements BrowserContract.Presenter {
+public class BrowserFragment extends Fragment<BrowserContract.View> implements BrowserContract.Presenter {
     private String TAG = "BrowserActivity";
     private ValueCallback<Uri> uploadFile;
     private String mIntentUrl;
 //    private int REQUEST_CODE_CHOOSE=8;
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,14 +50,24 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
         if (bundle != null) {
             mIntentUrl = bundle.getString(Global.BUNDLE_KEY_BROWSER_URL);
         }
-        init(vu.getWebView());
+        initbrowser(vu.getWebView());
     }
+
+    @Override
+    public void onBackPressed() {
+        onBackPressedSupport();
+    }
+
+    @Override
+    public boolean isPtrEnable() {
+        return true;
+    }
+
 
     protected WebViewClient getWebViewClient() {
-
         return new BrowserWebViewClient(vu.getWebView());
     }
-    private void init(final WebView webView) {
+    private void initbrowser(final WebView webView) {
         webView.setWebViewClient(getWebViewClient());
         vu.getPtr().setPtrHandler(new PtrHandler() {
             @Override
@@ -150,7 +145,7 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
             // For Android  > 4.1.1
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
                 Log.i("test", "openFileChooser 3");
-                BaseBrowserFragment.this.uploadFile = uploadFile;
+                BrowserFragment.this.uploadFile = uploadFile;
                 openFileChooseProcess();
             }
 
@@ -337,16 +332,6 @@ public class BaseBrowserFragment extends BaseFragment<BrowserContract.View> impl
         if (vu.getWebView() != null) {
             vu.getWebView().reload();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-    }
-
-    @Override
-    public boolean isPtrEnable() {
-        return true;
     }
 
 

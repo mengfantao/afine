@@ -1,7 +1,6 @@
 package com.yufan.library.browser;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -14,8 +13,8 @@ import com.tencent.smtt.sdk.WebView;
 import com.yufan.library.R;
 import com.yufan.library.base.BaseVu;
 import com.yufan.library.inject.FindLayout;
-import com.yufan.library.inject.FindView;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
+import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
 
@@ -32,6 +31,14 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
     private View myVideoView;
     private View myNormalView;
 
+
+
+
+    @Override
+    public void initStatusLayout(StateLayout stateLayout) {
+        super.initStatusLayout(stateLayout);
+    }
+
     @Override
     public void initView(View view) {
         mViewParent = (ViewGroup) view.findViewById(R.id.webview);
@@ -47,12 +54,6 @@ public class BrowserVu extends BaseVu<BrowserContract.Presenter>  implements Bro
         mViewParent.addView(mWebView, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.FILL_PARENT,
                 FrameLayout.LayoutParams.FILL_PARENT));
-    }
-
-
-    @Override
-    public void initStatusLayout(StateLayout stateLayout) {
-        super.initStatusLayout(stateLayout);
     }
 
     @Override

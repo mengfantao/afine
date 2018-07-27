@@ -12,6 +12,7 @@ import com.yufan.library.R;
 import com.yufan.library.inject.AnnotateUtils;
 import com.yufan.library.inter.Vu;
 import com.yufan.library.util.PxUtil;
+import com.yufan.library.view.recycler.YFRecyclerView;
 import com.yufan.library.widget.AppToolbar;
 import com.yufan.library.widget.StateLayout;
 
@@ -21,7 +22,7 @@ import com.yufan.library.widget.StateLayout;
  * vu view模块基础类,
  */
 
-public abstract class BaseVu<T extends BasePresenter> implements Vu {
+public abstract class BaseVu<T extends Pr> implements Vu {
     private RelativeLayout mRootLayout;
     private View mContentLayout;
     private StateLayout mStateLayout;
@@ -40,7 +41,7 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
     }
 
     @Override
-    public final View getView() {
+    public  final View getView() {
         return mRootLayout;
     }
 
@@ -144,4 +145,9 @@ public abstract class BaseVu<T extends BasePresenter> implements Vu {
     public final View findViewById(@IdRes int id) {
         return getView().findViewById(id);
     }
+    @Override
+    public  YFRecyclerView getRecyclerView() {
+        return null;
+    }
+
 }

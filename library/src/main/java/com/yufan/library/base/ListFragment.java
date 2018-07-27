@@ -13,13 +13,10 @@ import com.yufan.library.inter.Vu;
 
 /**
  * Created by mengfantao on 18/3/30.
- * 列表基础类，继承自baseFragment，需重写onBindVu,增加onLoadMore接口，
- * YFRecyclerView 为列表封装RecyclerView，只需要调initRecyclerview()初始化即可
- *
  *
  */
 
-public abstract class BaseListFragment <V extends Vu> extends BaseFragment  {
+public abstract class ListFragment<V extends Vu> extends Fragment {
     protected V vu;
     public V getVu() {
         return vu;
@@ -32,7 +29,6 @@ public abstract class BaseListFragment <V extends Vu> extends BaseFragment  {
             vu =(V) AnnotateUtils.getVu(this).newInstance();
             vu.init(inflater, container);
             vu.setPresenter(this);
-            onBindVu();
             view = vu.getView();
         } catch (java.lang.InstantiationException e) {
             e.printStackTrace();
@@ -40,14 +36,5 @@ public abstract class BaseListFragment <V extends Vu> extends BaseFragment  {
             e.printStackTrace();
         }
         return view;
-
     }
-
-
-    protected void onBindVu() {
-
-    }
-
-
-
 }

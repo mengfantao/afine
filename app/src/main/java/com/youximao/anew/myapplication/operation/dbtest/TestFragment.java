@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.youximao.anew.myapplication.PlainDBManager;
 import com.youximao.anew.myapplication.bean.Person;
-import com.yufan.library.base.BaseListFragment;
+import com.yufan.library.base.ListFragment;
 import com.yufan.library.inject.VuClass;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by mengfantao on 18/7/2.
  */
 @VuClass(TestVu.class)
-public class TestFragment extends BaseListFragment<TestVu> implements DbTestContract.Presenter {
+public class TestFragment extends ListFragment<DbTestContract.View> implements DbTestContract.Presenter {
     private PlainDBManager plainDBManager;
 
     @Override

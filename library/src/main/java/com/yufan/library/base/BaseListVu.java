@@ -10,15 +10,15 @@ import com.yufan.library.view.recycler.YFRecyclerView;
  * Created by mengfantao on 18/7/9.
  */
 
-public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
+public abstract class BaseListVu <T extends Pr>extends BaseVu {
     protected T mPersenter;
     private YFRecyclerView mYFRecyclerView;
     @Override
-    public T getPresenter() {
+    public final T getPresenter() {
         return mPersenter;
     }
     @Override
-    public void setPresenter(Object presenter) {
+    public final void setPresenter(Object presenter) {
         mPersenter= (T) presenter;
     }
     @Override
@@ -30,12 +30,10 @@ public abstract class BaseListVu <T extends BasePresenter>extends BaseVu {
         mYFRecyclerView= (YFRecyclerView) findViewById(recyclerviewId);
         initRecyclerview(mYFRecyclerView);
     }
-    public YFRecyclerView getRecyclerView() {
+    public final YFRecyclerView getRecyclerView() {
         return mYFRecyclerView;
     }
-
-
-    protected     void initRecyclerview(final YFRecyclerView recyclerViewModel){
+    private    final   void initRecyclerview(final YFRecyclerView recyclerViewModel){
         recyclerViewModel.initPTR();
         recyclerViewModel.setOnPagerListener(new YFRecyclerView.OnPagerListener() {
             @Override

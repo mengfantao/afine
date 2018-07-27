@@ -21,7 +21,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  *
  */
 
-public abstract class BaseFragment<V extends Vu> extends SupportFragment implements BasePresenter {
+public abstract class Fragment<V extends Vu> extends SupportFragment implements Pr {
     protected V vu;
 
     public V getVu() {
@@ -47,7 +47,6 @@ public abstract class BaseFragment<V extends Vu> extends SupportFragment impleme
             vu =(V) AnnotateUtils.getVu(this).newInstance();
             vu.init(inflater, container);
             vu.setPresenter(this);
-            onBindVu();
             view = vu.getView();
         } catch (java.lang.InstantiationException e) {
             e.printStackTrace();
@@ -56,15 +55,11 @@ public abstract class BaseFragment<V extends Vu> extends SupportFragment impleme
         }
 
         return view;
-
     }
-
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-
     }
-
     /**
      * 获取根fragment 即activity加载的第一个fragment
      *
@@ -77,11 +72,6 @@ public abstract class BaseFragment<V extends Vu> extends SupportFragment impleme
         }
         return fragment;
     }
-
-    protected  void onBindVu() {
-
-    }
-
 
 
 }

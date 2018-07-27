@@ -18,7 +18,8 @@ package com.youximao.anew.myapplication.operation.dbtest;
 
 
 import com.youximao.anew.myapplication.bean.Person;
-import com.yufan.library.base.BasePresenter;
+import com.yufan.library.base.Pr;
+import com.yufan.library.inter.Vu;
 
 import java.util.List;
 
@@ -27,10 +28,10 @@ import java.util.List;
  *业务接口
  */
 public interface DbTestContract {
-    interface View  {
+    interface View  extends Vu{
     void setData( List<Person> persons);
     }
-    interface Presenter {
+    interface Presenter extends Pr {
 
         void insert(Person person);
 

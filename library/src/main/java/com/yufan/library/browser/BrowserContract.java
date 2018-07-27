@@ -17,15 +17,11 @@
 package com.yufan.library.browser;
 
 
-import android.view.View;
-
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
-import com.yufan.library.base.BasePresenter;
+import com.yufan.library.base.Pr;
 import com.yufan.library.inter.Vu;
 import com.yufan.library.view.ptr.PtrClassicFrameLayout;
-
-import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
@@ -43,7 +39,7 @@ public interface BrowserContract {
       void   onReceivedError(WebView view, int errorCode, String description, String failingUrl);
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends Pr {
         void onBackPressed();
        boolean isPtrEnable();
     }

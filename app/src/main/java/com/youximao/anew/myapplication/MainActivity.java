@@ -2,10 +2,9 @@ package com.youximao.anew.myapplication;
 
 import android.os.Bundle;
 
-import com.youximao.anew.myapplication.operation.dbtest.TestFragment;
 import com.yufan.library.Global;
 import com.yufan.library.base.BaseActivity;
-import com.yufan.library.browser.BaseBrowserFragment;
+import com.yufan.library.browser.BrowserFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -13,7 +12,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BaseBrowserFragment fragment=  new BaseBrowserFragment();
+        BrowserFragment fragment=  new BrowserFragment();
         Bundle bundle=new Bundle();
         bundle.putString(Global.BUNDLE_KEY_BROWSER_URL,"http://www.baidu.com");
         fragment.setArguments(bundle);
